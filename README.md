@@ -3,7 +3,7 @@
 <h4 align="center">我自用的Clash配置文件 </h4>
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/Rabbit-Spec/Clash/Master/img/1.PNG" width="300"></img>
+<img src="https://raw.githubusercontent.com/Rabbit-Spec/Clash/Master/img/1.PNG" width="700"></img>
 </p>
 
 ## [此配置需要mihome核心，不支持其他Clash核心使用，请自行阅读mihomo文档理解使用。](https://github.com/MetaCubeX/mihomo/tree/Alpha) <br>
@@ -15,7 +15,7 @@
 4. 使用外部规则以及外部节点，极大程度的避免规则失效以及非官方配置文件节点不能及时更新的问题。
 5. 这是一份非常干净的配置文件，没有搞任何可能引起可用性冲突的配置参数，极大程度的减少各种误杀以及兼容问题。
 
-<img src="https://raw.githubusercontent.com/Rabbit-Spec/Clash/Master/img/2.PNG" width="300"></img>
+<img src="https://raw.githubusercontent.com/Rabbit-Spec/Clash/Master/img/2.PNG" width="500"></img>
 </p>
 
 ## 如何使用
