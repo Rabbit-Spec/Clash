@@ -6,7 +6,7 @@
 <img src="https://raw.githubusercontent.com/Rabbit-Spec/Clash/Master/img/1.PNG" width="700"></img>
 </p>
 
-## [此配置需要mihome核心，不支持其他Clash核心使用，请自行阅读mihomo文档理解使用。](https://github.com/MetaCubeX/mihomo/tree/Alpha) <br>
+## [此配置需要mihome核心，不支持其他Clash核心，请自行阅读mihomo文档理解使用。](https://github.com/MetaCubeX/mihomo/tree/Alpha) <br>
 
 ## 特点
 1. 彻底抛弃订阅转换器等各类拖油瓶.
