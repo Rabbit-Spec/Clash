@@ -14,8 +14,8 @@
 3. 配置简单，只需要修改几个参数即可愉快的上网冲浪。
 4. 使用外部规则以及外部节点，极大程度的避免规则失效以及非官方配置文件节点不能及时更新的问题。
 5. 这是一份非常干净的配置文件，没有搞任何可能引起可用性冲突的配置参数，极大程度的减少各种误杀以及兼容问题。
-
-<img src="https://raw.githubusercontent.com/Rabbit-Spec/Clash/Master/img/2.PNG" width="500"></img>
+<p align="center">
+<img src="https://raw.githubusercontent.com/Rabbit-Spec/Clash/Master/img/2.PNG" width="700"></img>
 </p>
 
 ## 如何使用
