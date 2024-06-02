@@ -29,6 +29,9 @@
 2. 一定要仔细阅读使用方式！
 3. 一定要仔细阅读使用方式！
 
+### 特别感谢
+- [@可莉🅥](https://gitlab.com/lodepuly/vpn_tool/-/tree/master/Tool/Clash/Config)
+
 ## 我用的机场
 **我用着好用不代表你用着也好用，如果想要入手的话，建议先买一个月体验一下。任何机场都有跑路的可能。**<br>
 [「Nexitally」佩奇家主站，一家全线中转线路的高端机场。](https://naixii.com/signupbyemail.aspx?MemberCode=0b532ff85dda43e595fb1ae17843ae6d20211110231626) <br>
