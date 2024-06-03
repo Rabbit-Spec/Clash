@@ -6,7 +6,7 @@
 <img src="https://raw.githubusercontent.com/Rabbit-Spec/Clash/Master/img/1.PNG" width="700"></img>
 </p>
 
-## [此配置需要mihome核心，不支持其他Clash核心，请自行阅读mihomo文档理解使用。](https://github.com/MetaCubeX/mihomo/tree/Alpha) <br>
+## [此配置需要Mihomo Kernel（Meta内核），不支持其他Clash核心，请自行阅读Mihomo文档理解使用。](https://github.com/MetaCubeX/mihomo/tree/Alpha) <br>
 
 ## 特点
 1. 彻底抛弃订阅转换器等各类拖油瓶.
@@ -19,7 +19,7 @@
 ### 1. 配置文件链接
 > **公开版 :** https://raw.githubusercontent.com/Rabbit-Spec/Clash/Master/Yaml/Clash.yaml<br>
 ### 2. 使用方式
-**机场订阅的添加请搜索配置文件内的proxy-providers并按照说明自行添加。**<br>
+**添加机场订阅链接请搜索配置文件内的proxy-providers并按照说明进行设置。**<br>
 
 ## 注意事項
 1. 一定要仔细阅读使用方式！
