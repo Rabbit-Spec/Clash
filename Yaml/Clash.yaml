@@ -141,6 +141,11 @@ rule-providers:
     <<: *RuleSet
     url: 'https://gh.api.99988866.xyz/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMedia/ChinaMedia.yaml'
     path: './RuleSet/ChinaMedia.yaml'
+
+  Apple:
+    <<: *RuleSet
+    url: 'https://gh.api.99988866.xyz/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Apple/Apple_Classical_No_Resolve.yaml'
+    path: './RuleSet/Apple.yaml'
     
   Nintendo:
     <<: *RuleSet
@@ -198,6 +203,7 @@ rules:
  - RULE-SET,ChinaMedia,DIRECT
  - RULE-SET,TikTok,TikTok
  - RULE-SET,GlobalMedia,GlobalMedia
+ - RULE-SET,Apple,Apple
  - RULE-SET,Nintendo,Game
  - RULE-SET,PlayStation,Game
  - RULE-SET,Epic,Game
