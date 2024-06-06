@@ -1,5 +1,6 @@
 # Clash mihomo内核配置
 # 日期：2024-06-02
+# 版本：1.2
 # 配置作者：https://github.com/Rabbit-Spec
 # 适用版本：所有使用 mihomo 核心的程序
 port: 7890
