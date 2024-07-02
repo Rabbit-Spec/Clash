@@ -22,7 +22,7 @@
 ### 2. 使用方式
 **添加机场订阅链接请搜索配置文件内的proxy-providers并按照说明进行设置。**<br>
 
-## 我测试适配的Clash客户端
+## 我测试可用的Clash客户端
 > **macOS :** https://github.com/MetaCubeX/ClashX.Meta<br>
 > **Windows :** https://github.com/clash-verge-rev/clash-verge-rev<br>
 > **Android :** https://github.com/MetaCubeX/ClashMetaForAndroid<br>
