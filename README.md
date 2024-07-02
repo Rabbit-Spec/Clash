@@ -26,6 +26,7 @@
 > **macOS :** https://github.com/MetaCubeX/ClashX.Meta<br>
 > **Windows :** https://github.com/clash-verge-rev/clash-verge-rev<br>
 > **Android :** https://github.com/MetaCubeX/ClashMetaForAndroid<br>
+> **OpenWRT :** https://github.com/vernesong/OpenClash<br>
 
 
 ## 注意事項
