@@ -1,15 +1,14 @@
 # Clash Mihomo内核配置 mini
-# 日期：2024-06-06
-# 版本：1.4
+# 日期：2024-07-22
+# 版本：1.6
 # 配置作者：https://github.com/Rabbit-Spec
 # 适用版本：所有使用 mihomo 核心的程序
+
 port: 7890
 socks-port: 7891
 mixed-port: 7892
 redir-port: 7893
 tproxy-port: 7894
-# mixed-port: 7890
-# tproxy-port: 7891
 
 unified-delay: true
 geodata-mode: false
@@ -31,10 +30,10 @@ external-controller: 0.0.0.0:9090
 # external-ui-url: 'https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip'
 
 geox-url:
-  geoip: 'https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geoip.dat'
-  geosite: 'https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geosite.dat'
+  # geoip: 'https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geoip.dat'
+  # geosite: 'https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geosite.dat'
   mmdb: 'https://gitlab.com/Masaiki/GeoIP2-CN/-/raw/release/Country.mmdb'
-  asn: 'https://github.com/xishang0128/geoip/releases/download/latest/GeoLite2-ASN.mmdb'
+  asn: 'https://gitlab.com/Loon0x00/loon_data/-/raw/main/geo/GeoLite2-ASN.mmdb'
 
 profile:
   store-selected: true
@@ -78,7 +77,7 @@ dns:
     - +.lan
   default-nameserver:
     - 223.5.5.5
-    - 223.6.6.6
+    - 119.29.29.29
   nameserver:
     - https://223.5.5.5/dns-query#h3=true
     - https://223.6.6.6/dns-query#h3=true
@@ -101,9 +100,9 @@ FilterUS: &FilterUS '^(?=.*((?i)🇺🇸|美国|波特兰|达拉斯|俄勒冈|�
 FilterAll: &FilterAll '^(?=.*(.))(?!.*((?i)群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|(\b(USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author)\b|(\d{4}-\d{2}-\d{2}|\d+G)))).*$'
 
 # 策略组参数锚点
-# 锚点 - 手动选择参数
-Select: &Select {type: select, url: 'http://www.google.com/generate_204', disable-udp: false, hidden: true, include-all: true}
-# 锚点 - 规则参数 [每小时更新一次订阅规则，更新规则时使用直连策略]
+# 锚点 - 故障转移参数 [每 10 秒一次惰性健康检查，时延超过 2 秒判定为失败，失败 3 次则自动触发健康检查]
+FallBack: &FallBack {type: fallback, interval: 10, lazy: true, url: 'http://www.google.com/generate_204', disable-udp: false, timeout: 2000, max-failed-times: 3, hidden: true, include-all-providers: true}
+# 锚点 - 规则参数 [每天更新一次订阅规则，更新规则时使用直连策略]
 RuleSet: &RuleSet {type: http, behavior: classical, interval: 86400, format: yaml, proxy: DIRECT}
 
 # 策略组
@@ -117,10 +116,10 @@ proxy-groups:
   - {name: Telegram, type: select, proxies: [🇭🇰 香港节点, Proxy, 🇺🇸 美国节点, 🇯🇵 日本节点, 🇸🇬 新加坡节点]}
   - {name: GlobalMedia, type: select, proxies: [🇭🇰 香港节点]}
 
-  - {name: 🇭🇰 香港节点, <<: *Select, filter: *FilterHK}
-  - {name: 🇺🇸 美国节点, <<: *Select, filter: *FilterUS}
-  - {name: 🇯🇵 日本节点, <<: *Select, filter: *FilterJP}
-  - {name: 🇸🇬 新加坡节点, <<: *Select, filter: *FilterSG}
+  - {name: 🇭🇰 香港节点, <<: *FallBack, filter: *FilterHK}
+  - {name: 🇺🇸 美国节点, <<: *FallBack, filter: *FilterUS}
+  - {name: 🇯🇵 日本节点, <<: *FallBack, filter: *FilterJP}
+  - {name: 🇸🇬 新加坡节点, <<: *FallBack, filter: *FilterSG}
 
 # 订阅规则
 rule-providers:
