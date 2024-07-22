@@ -17,7 +17,8 @@
 
 ## 如何使用
 ### 1. 配置文件链接
-> **迷你版 :** https://raw.githubusercontent.com/Rabbit-Spec/Clash/Master/Yaml/Clash.yaml<br>
+> **迷你版 :** https://raw.githubusercontent.com/Rabbit-Spec/Clash/Master/Yaml/Clash_Mini.yaml<br>
+> **标准版 :** https://raw.githubusercontent.com/Rabbit-Spec/Clash/Master/Yaml/Clash.yaml<br>
 > **完整版 :** https://raw.githubusercontent.com/Rabbit-Spec/Clash/Master/Yaml/Clash_Pro.yaml<br>
 ### 2. 使用方式
 **添加机场订阅链接请搜索配置文件内的proxy-providers并按照说明进行设置。**<br>
