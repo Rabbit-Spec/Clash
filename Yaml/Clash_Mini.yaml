@@ -1,6 +1,6 @@
 # Clash Mihomo内核配置 mini
-# 日期：2024-07-22
-# 版本：1.6
+# 日期：2024-08-15
+# 版本：2.0
 # 配置作者：https://github.com/Rabbit-Spec
 # 适用版本：所有使用 mihomo 核心的程序
 
@@ -90,7 +90,7 @@ proxy-providers:
   我的节点:
     url: '机场的订阅地址'
     <<: *NodeParam
-    path: './proxy_provider/providers.yaml'
+    path: './proxy_provider/Providers.yaml'
 
 # 锚点 - 节点筛选组
 FilterHK: &FilterHK '^(?=.*((?i)🇭🇰|香港|(\b(HK|Hong)\b))).*$'
@@ -107,14 +107,14 @@ RuleSet: &RuleSet {type: http, behavior: classical, interval: 86400, format: yam
 
 # 策略组
 proxy-groups: 
-  - {name: Proxy, type: select, proxies: [🇭🇰 香港节点, 🇺🇸 美国节点, 🇯🇵 日本节点, 🇸🇬 新加坡节点]}
-  - {name: OpenAi, type: select, include-all: true, filter: *FilterAll}
-  - {name: Apple, type: select, proxies: [DIRECT, Proxy, 🇭🇰 香港节点, 🇺🇸 美国节点, 🇯🇵 日本节点, 🇸🇬 新加坡节点]}
-  - {name: Gamer, type: select, proxies: [DIRECT, Proxy, 🇭🇰 香港节点, 🇺🇸 美国节点, 🇯🇵 日本节点, 🇸🇬 新加坡节点]}
-  - {name: TikTok, type: select, proxies: [🇭🇰 香港节点, Proxy, 🇺🇸 美国节点, 🇯🇵 日本节点, 🇸🇬 新加坡节点]}
-  - {name: Microsoft, type: select, proxies: [DIRECT, Proxy, 🇭🇰 香港节点, 🇺🇸 美国节点, 🇯🇵 日本节点, 🇸🇬 新加坡节点]}
-  - {name: Telegram, type: select, proxies: [🇭🇰 香港节点, Proxy, 🇺🇸 美国节点, 🇯🇵 日本节点, 🇸🇬 新加坡节点]}
-  - {name: GlobalMedia, type: select, proxies: [🇭🇰 香港节点]}
+  - {name: Proxy, type: select, proxies: [🇭🇰 香港节点, 🇺🇸 美国节点, 🇯🇵 日本节点, 🇸🇬 新加坡节点], icon: 'https://raw.githubusercontent.com/pompurin404/mihomo-party/master/resources/icon.png'}
+  - {name: OpenAi, type: select, include-all: true, filter: *FilterAll, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/ChatGPT.png'}
+  - {name: Apple, type: select, proxies: [DIRECT, Proxy, 🇭🇰 香港节点, 🇺🇸 美国节点, 🇯🇵 日本节点, 🇸🇬 新加坡节点], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_1.png'}
+  - {name: Gamer, type: select, proxies: [DIRECT, Proxy, 🇭🇰 香港节点, 🇺🇸 美国节点, 🇯🇵 日本节点, 🇸🇬 新加坡节点], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Game.png'}
+  - {name: TikTok, type: select, proxies: [Proxy, 🇺🇸 美国节点, 🇯🇵 日本节点, 🇸🇬 新加坡节点], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png'}
+  - {name: GlobalMedia, type: select, proxies: [Proxy, 🇭🇰 香港节点, 🇺🇸 美国节点, 🇯🇵 日本节点, 🇸🇬 新加坡节点], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/ForeignMedia.png'}
+  - {name: Telegram, type: select, proxies: [Proxy, 🇭🇰 香港节点, 🇺🇸 美国节点, 🇯🇵 日本节点, 🇸🇬 新加坡节点], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram.png'}
+  - {name: Microsoft, type: select, proxies: [DIRECT, Proxy, 🇭🇰 香港节点, 🇺🇸 美国节点, 🇯🇵 日本节点, 🇸🇬 新加坡节点], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png'}
 
   - {name: 🇭🇰 香港节点, <<: *FallBack, filter: *FilterHK}
   - {name: 🇺🇸 美国节点, <<: *FallBack, filter: *FilterUS}
@@ -195,11 +195,10 @@ rule-providers:
 
 # 分流规则指向
 rules:
- - RULE-SET,LAN,DIRECT
- - RULE-SET,ChinaMedia,DIRECT
- - RULE-SET,TikTok,TikTok
- - RULE-SET,GlobalMedia,GlobalMedia
  - RULE-SET,Apple,Apple
+ - RULE-SET,TikTok,TikTok
+ - RULE-SET,ChinaMedia,DIRECT
+ - RULE-SET,GlobalMedia,GlobalMedia
  - RULE-SET,Nintendo,Gamer
  - RULE-SET,PlayStation,Gamer
  - RULE-SET,Epic,Gamer
@@ -209,5 +208,6 @@ rules:
  - RULE-SET,Proxy,Proxy
  - RULE-SET,China,DIRECT
  - RULE-SET,ChinaIPs,DIRECT
+ - RULE-SET,LAN,DIRECT
  - GEOIP,CN,DIRECT
  - MATCH,Proxy
