@@ -1,8 +1,8 @@
-# Clash Mihomo内核配置 mini
-# 日期：2024-08-15
-# 版本：2.0
+# 深巷有喵的「Clash_Max」配置
+# 日期：2024-09-12
+# 版本：2.1
 # 配置作者：https://github.com/Rabbit-Spec
-# 适用版本：所有使用 mihomo 核心的程序
+# 适用版本：所有使用 Mihomo 内核的程序
 
 port: 7890
 socks-port: 7891
