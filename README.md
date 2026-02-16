@@ -1,3 +1,4 @@
+[![Support on Afdian](https://img.shields.io/badge/Support-爱发电-orange.svg?style=flat-square&logo=afdian)](https://afdian.com/a/Rabbit-Spec)
 <h1 align="center">Clash自用配置文件</h1>
 
 <h4 align="center">我自用的Clash配置文件 </h4>
@@ -14,6 +15,16 @@
 3. 配置简单，只需要修改几个参数即可愉快的上网冲浪。
 4. 使用外部规则以及外部节点，极大程度的避免规则失效以及非官方配置文件节点不能及时更新的问题。
 5. 这是一份非常干净的配置文件，没有搞任何可能引起可用性冲突的配置参数，极大程度的减少各种误杀以及兼容问题。
+
+---
+
+## ☕ 赞助与支持
+
+如果你觉得 **Rabbit-Spec** 的Surge项目对你有帮助，欢迎请我喝杯咖啡。
+
+👉 [点击前往爱发电支持我](https://afdian.com/a/Rabbit-Spec)
+
+---
 
 ## 如何使用
 ### 1. 配置文件链接
