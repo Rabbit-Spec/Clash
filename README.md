@@ -20,7 +20,7 @@
 
 ## ☕ 赞助与支持
 
-如果你觉得 **Rabbit-Spec** 的Surge项目对你有帮助，欢迎请我喝杯咖啡。
+如果你觉得 **Rabbit-Spec** 的「Clash配置」项目对你有帮助，欢迎请我喝杯咖啡。
 
 👉 [点击前往爱发电支持我](https://afdian.com/a/Rabbit-Spec)
 
