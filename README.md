@@ -1,4 +1,4 @@
-[![Support on Afdian](https://img.shields.io/badge/Support-爱发电-orange.svg?style=flat-square&logo=afdian)](https://afdian.com/a/Rabbit-Spec)
+[![Support on Afdian](https://img.shields.io/badge/Support-爱发电-orange.svg?style=flat-square&logo=afdian)](https://ifdian.net/a/Rabbit-Spec)
 <h1 align="center">Clash自用配置文件</h1>
 
 <h4 align="center">我自用的Clash配置文件 </h4>
@@ -22,7 +22,7 @@
 
 如果你觉得 **Rabbit-Spec** 的「Clash配置」项目对你有帮助，欢迎请我喝杯咖啡。
 
-👉 [点击前往爱发电支持我](https://afdian.com/a/Rabbit-Spec)
+👉 [点击前往爱发电支持我](https://ifdian.net/a/Rabbit-Spec)
 
 ---
 
