@@ -1,11 +1,21 @@
 # NAME: 深巷有喵的「Proxy」规则
 # AUTHOR: Rabbit-Spec
 # REPO: https://github.com/Rabbit-Spec/Clash
-# UPDATED: 2026.07.14 14:16:05
-# TOTAL: 6914
+# UPDATED: 2026.07.14 14:18:10
+# TOTAL: 6921
+
+# ======= 手动维护规则 ========
+payload:
+  - 'DOMAIN-SUFFIX,snbforums.com'
+  - 'DOMAIN-SUFFIX,asuswrt-merlin.net'
+  - 'DOMAIN-SUFFIX,caldigit.com'
+  - 'DOMAIN-SUFFIX,onlyfans.com'
+  - 'DOMAIN-SUFFIX,dbrand.com'
+  - 'DOMAIN-SUFFIX,home-assistant.io'
+  - 'DOMAIN-SUFFIX,betterdisplay.pro'
+
 
 # ======= GitHub ========
-payload:
   - 'DOMAIN-SUFFIX,atom.io'
   - 'DOMAIN-SUFFIX,dependabot.com'
   - 'DOMAIN-SUFFIX,ghcr.io'
