@@ -1,6 +1,6 @@
 # 深巷有喵的「Clash_Mini」配置
-# 日期：2025-07-05
-# 版本：2.1.9
+# 日期：2026-07-14
+# 版本：3.0.0
 # 配置作者：https://github.com/Rabbit-Spec
 # 适用版本：所有使用 Mihomo 内核的程序
 
@@ -22,7 +22,7 @@ global-client-fingerprint: chrome
 allow-lan: true
 mode: rule
 log-level: info
-ipv6: true
+ipv6: false
 udp: true
 
 external-controller: 0.0.0.0:9090
@@ -56,7 +56,8 @@ sniffer:
     - +.v2ex.com
 
   skip-domain:
-    - Mijia Cloud
+    - '+.mijia.com'
+    - '+.io.mijia.com'
 
 tun:
   enable: true
@@ -88,10 +89,10 @@ dns:
     - +.lan
   default-nameserver:
     - 223.5.5.5
-    - 223.6.6.6
+    - 119.29.29.29
   nameserver:
     - https://223.5.5.5/dns-query
-    - https://223.6.6.6/dns-query
+    - https://doh.pub/dns-query
 
 proxies:
 
@@ -107,114 +108,83 @@ proxy-providers:
 
 # 锚点 - 节点筛选组
 FilterHK: &FilterHK '^(?=.*((?i)🇭🇰|香港|(\b(HK|Hong)\b))).*$'
+FilterUS: &FilterUS '^(?=.*((?i)🇺🇸|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|(\b(US|United States)\b))).*$'
 FilterJP: &FilterJP '^(?=.*((?i)🇯🇵|日本|川日|东京|大阪|泉日|埼玉|(\b(JP|Japan)\b))).*$'
 FilterSG: &FilterSG '^(?=.*((?i)🇸🇬|新加坡|狮|(\b(SG|Singapore)\b))).*$'
-FilterUS: &FilterUS '^(?=.*((?i)🇺🇸|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|(\b(US|United States)\b))).*$'
-FilterAll: &FilterAll '^(?=.*(.))(?!.*((?i)群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|(\b(USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author)\b|(\d{4}-\d{2}-\d{2}|\d+G)))).*$'
+FilterKR: &FilterKR '^(?=.*((?i)🇰🇷|韩国|韓|首尔|(\b(KR|Korea)\b))).*$'
 
-# 策略组参数锚点
-# 锚点 - 故障转移参数 [每 10 秒一次惰性健康检查，时延超过 2 秒判定为失败，失败 3 次则自动触发健康检查]
-FallBack: &FallBack {type: fallback, interval: 10, lazy: true, url: 'http://connectivitycheck.gstatic.com/generate_204', disable-udp: false, timeout: 3000, max-failed-times: 3, hidden: true, include-all-providers: true}
+# 锚点 - 故障转移参数 [每 10 秒一次惰性健康检查，时延超过 3 秒判定为失败，失败 3 次则自动触发健康检查]
+FallBack: &FallBack {type: fallback, interval: 5, lazy: true, url: 'http://cp.cloudflare.com/generate_204', disable-udp: false, timeout: 3000, max-failed-times: 2, hidden: true, include-all-providers: true}
+
 # 锚点 - 规则参数 [每天更新一次订阅规则，更新规则时使用Proxy策略]
 RuleSet: &RuleSet {type: http, behavior: classical, interval: 86400, format: yaml, proxy: Proxy}
 
 # 策略组
 proxy-groups: 
-  - {name: Proxy, type: select, proxies: [🇭🇰 香港节点, 🇺🇸 美国节点, 🇯🇵 日本节点, 🇸🇬 新加坡节点], icon: 'https://raw.githubusercontent.com/pompurin404/mihomo-party/master/resources/icon.png'}
-  - {name: OpenAi, type: select, include-all: true, filter: *FilterAll, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/ChatGPT.png'}
-  - {name: Apple, type: select, proxies: [DIRECT, Proxy, 🇭🇰 香港节点, 🇺🇸 美国节点, 🇯🇵 日本节点, 🇸🇬 新加坡节点], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_1.png'}
-  - {name: Gamer, type: select, proxies: [DIRECT, Proxy, 🇭🇰 香港节点, 🇺🇸 美国节点, 🇯🇵 日本节点, 🇸🇬 新加坡节点], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Game.png'}
-  - {name: TikTok, type: select, proxies: [Proxy, 🇺🇸 美国节点, 🇯🇵 日本节点, 🇸🇬 新加坡节点], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png'}
-  - {name: GlobalMedia, type: select, proxies: [Proxy, 🇭🇰 香港节点, 🇺🇸 美国节点, 🇯🇵 日本节点, 🇸🇬 新加坡节点], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/ForeignMedia.png'}
-  - {name: Telegram, type: select, proxies: [Proxy, 🇭🇰 香港节点, 🇺🇸 美国节点, 🇯🇵 日本节点, 🇸🇬 新加坡节点], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram.png'}
-  - {name: Microsoft, type: select, proxies: [DIRECT, Proxy, 🇭🇰 香港节点, 🇺🇸 美国节点, 🇯🇵 日本节点, 🇸🇬 新加坡节点], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png'}
+  - {name: Proxy, type: select, proxies: [🇭🇰 香港节点, 🇺🇸 美国节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点], icon: 'https://raw.githubusercontent.com/Rabbit-Spec/Surge/Master/Conf/icon/Proxy.png'}
+  - {name: Apple, type: select, proxies: [DIRECT, Proxy, 🇭🇰 香港节点, 🇺🇸 美国节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点], icon: 'https://raw.githubusercontent.com/Rabbit-Spec/Surge/Master/Conf/icon/Apple_Arcade.png'}
+  - {name: AIGC, type: select, proxies: [Proxy, 🇭🇰 香港节点, 🇺🇸 美国节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点], icon: 'https://raw.githubusercontent.com/Rabbit-Spec/Surge/Master/Conf/icon/ChatGPT.png'}
+  - {name: GlobalMedia, type: select, proxies: [Proxy, 🇭🇰 香港节点, 🇺🇸 美国节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点], icon: 'https://raw.githubusercontent.com/Rabbit-Spec/Surge/Master/Conf/icon/GlobalMedia.png'}
 
   - {name: 🇭🇰 香港节点, <<: *FallBack, filter: *FilterHK}
   - {name: 🇺🇸 美国节点, <<: *FallBack, filter: *FilterUS}
   - {name: 🇯🇵 日本节点, <<: *FallBack, filter: *FilterJP}
+  - {name: 🇰🇷 韩国节点, <<: *FallBack, filter: *FilterKR}
   - {name: 🇸🇬 新加坡节点, <<: *FallBack, filter: *FilterSG}
 
 # 订阅规则
 rule-providers:
-  GlobalMedia:
-    <<: *RuleSet
-    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GlobalMedia/GlobalMedia_Classical.yaml'
-    path: './RuleSet/GlobalMedia.yaml'
 
-  ChinaMedia:
+  LAN:
     <<: *RuleSet
-    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMedia/ChinaMedia.yaml'
-    path: './RuleSet/ChinaMedia.yaml'
+    url: 'https://raw.githubusercontent.com/Rabbit-Spec/Clash/Master/Rules/LAN.yaml'
+    path: './RuleSet/LAN.yaml'
+
+  AIGC:
+    <<: *RuleSet
+    url: 'https://raw.githubusercontent.com/Rabbit-Spec/Clash/Master/Rules/AIGC.yaml'
+    path: './RuleSet/AIGC.yaml'
 
   Apple:
     <<: *RuleSet
-    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Apple/Apple_Classical_No_Resolve.yaml'
+    url: 'https://raw.githubusercontent.com/Rabbit-Spec/Clash/Master/Rules/Apple.yaml'
     path: './RuleSet/Apple.yaml'
 
-  Microsoft:
+  GlobalMedia:
     <<: *RuleSet
-    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Microsoft/Microsoft_No_Resolve.yaml'
-    path: './RuleSet/Microsoft.yaml'
+    url: 'https://raw.githubusercontent.com/Rabbit-Spec/Clash/Master/Rules/GlobalMedia.yaml'
+    path: './RuleSet/GlobalMedia.yaml'
 
-  Nintendo:
-    <<: *RuleSet
-    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Nintendo/Nintendo.yaml'
-    path: './RuleSet/Nintendo.yaml'
-    
-  PlayStation:
-    <<: *RuleSet
-    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/PlayStation/PlayStation.yaml'
-    path: './RuleSet/PlayStation.yaml'
-    
-  Epic:
-    <<: *RuleSet
-    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Epic/Epic.yaml'
-    path: './RuleSet/Epic.yaml'
-    
-  Xbox:
-    <<: *RuleSet
-    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Xbox/Xbox.yaml'
-    path: './RuleSet/Xbox.yaml'
-
-  TikTok:
-    <<: *RuleSet
-    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/TikTok/TikTok_No_Resolve.yaml'
-    path: './RuleSet/TikTok.yaml'
-
-  OpenAI:
-    <<: *RuleSet
-    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI_No_Resolve.yaml'
-    path: './RuleSet/OpenAI.yaml'
-    
   Proxy:
     <<: *RuleSet
-    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Proxy/Proxy_Classical_No_Resolve.yaml'
+    url: 'https://raw.githubusercontent.com/Rabbit-Spec/Clash/Master/Rules/Proxy.yaml'
     path: './RuleSet/Proxy.yaml'
 
   China:
     <<: *RuleSet
-    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/ChinaMax/ChinaMax_Classical.yaml'
+    url: 'https://raw.githubusercontent.com/Rabbit-Spec/Clash/Master/Rules/China.yaml'
     path: './RuleSet/China.yaml'
 
-  LAN:
+  ChinaCIDR:
     <<: *RuleSet
-    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Lan/Lan.yaml'
-    path: './RuleSet/LAN.yaml'
+    url: 'https://raw.githubusercontent.com/Rabbit-Spec/Clash/Master/Rules/ChinaCIDR.yaml'
+    path: './RuleSet/ChinaCIDR.yaml'
 
 # 分流规则指向
 rules:
- - RULE-SET,Apple,Apple
- - RULE-SET,TikTok,TikTok
- - RULE-SET,ChinaMedia,DIRECT
- - RULE-SET,GlobalMedia,GlobalMedia
- - RULE-SET,Nintendo,Gamer
- - RULE-SET,PlayStation,Gamer
- - RULE-SET,Epic,Gamer
- - RULE-SET,Xbox,Gamer
- - RULE-SET,OpenAI,OpenAi
- - RULE-SET,Microsoft,Microsoft
- - RULE-SET,Proxy,Proxy
+# > 局域网地址
  - RULE-SET,LAN,DIRECT
+# > 智能助理
+ - RULE-SET,AIGC,AIGC
+# > 苹果服务
+ - RULE-SET,Apple,Apple
+# > 流媒体
+ - RULE-SET,GlobalMedia,GlobalMedia
+# > Proxy
+ - RULE-SET,Proxy,Proxy
+# > China
  - RULE-SET,China,DIRECT
- - GEOIP,CN,DIRECT
+# > ChinaCIDR
+ - RULE-SET,ChinaCIDR,DIRECT
+# > 兜底规则
  - MATCH,Proxy
