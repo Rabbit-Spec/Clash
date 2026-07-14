@@ -1,5 +1,5 @@
 # 深巷有喵的「Clash」上游同步规则
-# 版本：1.0.0
+# 版本：1.0.1
 # 日期：2026.07.14
 # 作者：https://github.com/Rabbit-Spec/Clash
 
@@ -39,7 +39,7 @@ jobs:
           # 获取北京时间
           UPDATE_TIME=$(TZ="Asia/Shanghai" date +"%Y.%m.%d %H:%M:%S")
           
-          # 1. 定义标准处理函数 (统一输出为 YAML 格式)
+          # 1. 定义标准处理函数
           process_rule() {
             local source_url=$1
             local target_name=$2
@@ -52,22 +52,26 @@ jobs:
             
             # 创建临时文件存储规则正文
             temp_body=$(mktemp)
+            temp_upstream=$(mktemp)
             
-            # A. 合并手动追加规则 (处于文件顶部，获取最高去重优先级)
-            if [ -f "$manual_file" ]; then
+            # A. 提取并规范化手动追加规则
+            if [ -f "$manual_file" ] && [ -s "$manual_file" ]; then
               echo "# ======= 手动维护规则 ========" >> "$temp_body"
-              grep -iv 'payload:' "$manual_file" | sed -E "s/^[[:space:]]*-?[[:space:]]*['\"]?//g; s/['\"]?[[:space:]]*$//g" >> "$temp_body"
+              awk 'tolower($0) !~ /payload:/ && $0 !~ /^[[:space:]]*#/ && NF' "$manual_file" | sed -E "s/^[[:space:]]*-?[[:space:]]*['\"]?//g; s/['\"]?[[:space:]]*$//g" >> "$temp_body"
               echo "" >> "$temp_body"
             fi
             
-            # B. 写入上游同步规则
+            # B. 下载并清洗上游规则
             echo "# ======= 上游同步规则 ========" >> "$temp_body"
-            if [ -f "$exclude_file" ] && [ -s "$exclude_file" ]; then
-              # 下载 -> 过滤 payload -> 净化格式 -> 剔除排除列表关键字 -> 写入缓存
-              curl -sL "$source_url" | grep -iv 'payload:' | sed -E "s/^[[:space:]]*-?[[:space:]]*['\"]?//g; s/['\"]?[[:space:]]*$//g" | grep -v '^[[:space:]]*$' | grep -vFf "$exclude_file" >> "$temp_body"
+            if curl -fsL "$source_url" | awk 'tolower($0) !~ /payload:/ && $0 !~ /^[[:space:]]*#/ && NF' | sed -E "s/^[[:space:]]*-?[[:space:]]*['\"]?//g; s/['\"]?[[:space:]]*$//g" > "$temp_upstream"; then
+              # 如果存在排除文件，安全过滤
+              if [ -f "$exclude_file" ] && [ -s "$exclude_file" ]; then
+                grep -vFf "$exclude_file" "$temp_upstream" >> "$temp_body" || true
+              else
+                cat "$temp_upstream" >> "$temp_body"
+              fi
             else
-              # 下载 -> 过滤 payload -> 净化格式 -> 写入缓存
-              curl -sL "$source_url" | grep -iv 'payload:' | sed -E "s/^[[:space:]]*-?[[:space:]]*['\"]?//g; s/['\"]?[[:space:]]*$//g" | grep -v '^[[:space:]]*$' >> "$temp_body"
+              echo "Warning: Failed to download $source_url"
             fi
             
             # C. 合并去重
@@ -75,7 +79,7 @@ jobs:
             awk '/^#|^[[:space:]]*$/ {print; next} !seen[$0]++' "$temp_body" > "${temp_body}.tmp" && mv "${temp_body}.tmp" "$temp_body"
             
             # D. 统计非注释且非空行的行数
-            local rule_count=$(grep -v '^[[:space:]]*#' "$temp_body" | grep -v '^[[:space:]]*$' | wc -l)
+            local rule_count=$(awk '$0 !~ /^[[:space:]]*#/ && NF' "$temp_body" | wc -l)
             
             # E. 构造最终文件：Header
             echo "# NAME: $display_name" > "$target_path"
@@ -99,10 +103,10 @@ jobs:
               fi
             done < "$temp_body"
             
-            rm "$temp_body"
+            rm -f "$temp_body" "$temp_upstream"
           }
           
-          # --- 第一部分：常规规则同步 (全部统一为 .yaml) ---
+          # --- 第一部分：常规规则同步 ---
           # Loyalsoldier 仓库
           URL_PROXY="https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/cncidr.txt"
           process_rule "$URL_PROXY" "ChinaCIDR.yaml" "深巷有喵的「ChinaCIDR」规则"
@@ -164,9 +168,9 @@ jobs:
           proxy_temp=$(mktemp)
           
           # A. Proxy 手动规则
-          if [ -f "$PROXY_MANUAL" ]; then
+          if [ -f "$PROXY_MANUAL" ] && [ -s "$PROXY_MANUAL" ]; then
             echo "# ======= 手动维护规则 ========" >> "$proxy_temp"
-            grep -iv 'payload:' "$PROXY_MANUAL" | sed -E "s/^[[:space:]]*-?[[:space:]]*['\"]?//g; s/['\"]?[[:space:]]*$//g" >> "$proxy_temp"
+            awk 'tolower($0) !~ /payload:/ && $0 !~ /^[[:space:]]*#/ && NF' "$PROXY_MANUAL" | sed -E "s/^[[:space:]]*-?[[:space:]]*['\"]?//g; s/['\"]?[[:space:]]*$//g" >> "$proxy_temp"
             echo "" >> "$proxy_temp"
             echo "" >> "$proxy_temp"
           fi
@@ -182,11 +186,17 @@ jobs:
             name="${sub%%|*}"
             url="${sub#*|}"
             echo "# ======= $name ========" >> "$proxy_temp"
-            if [ -f "$PROXY_EXCLUDE" ] && [ -s "$PROXY_EXCLUDE" ]; then
-              curl -sL "$url" | grep -iv 'payload:' | sed -E "s/^[[:space:]]*-?[[:space:]]*['\"]?//g; s/['\"]?[[:space:]]*$//g" | grep -v '^[[:space:]]*$' | grep -vFf "$PROXY_EXCLUDE" >> "$proxy_temp"
+            temp_sub=$(mktemp)
+            if curl -fsL "$url" | awk 'tolower($0) !~ /payload:/ && $0 !~ /^[[:space:]]*#/ && NF' | sed -E "s/^[[:space:]]*-?[[:space:]]*['\"]?//g; s/['\"]?[[:space:]]*$//g" > "$temp_sub"; then
+              if [ -f "$PROXY_EXCLUDE" ] && [ -s "$PROXY_EXCLUDE" ]; then
+                grep -vFf "$PROXY_EXCLUDE" "$temp_sub" >> "$proxy_temp" || true
+              else
+                cat "$temp_sub" >> "$proxy_temp"
+              fi
             else
-              curl -sL "$url" | grep -iv 'payload:' | sed -E "s/^[[:space:]]*-?[[:space:]]*['\"]?//g; s/['\"]?[[:space:]]*$//g" | grep -v '^[[:space:]]*$' >> "$proxy_temp"
+              echo "Warning: Failed to download $url"
             fi
+            rm -f "$temp_sub"
             echo "" >> "$proxy_temp"
           done
           
@@ -194,8 +204,8 @@ jobs:
           sed -i 's/\r//g' "$proxy_temp"
           awk '/^#|^[[:space:]]*$/ {print; next} !seen[$0]++' "$proxy_temp" > "${proxy_temp}.tmp" && mv "${proxy_temp}.tmp" "$proxy_temp"
 
-          # D. 统计 Proxy 规则数
-          proxy_count=$(grep -v '^[[:space:]]*#' "$proxy_temp" | grep -v '^[[:space:]]*$' | wc -l)
+          # D. 统计 Proxy 规则数 (安全统计)
+          proxy_count=$(awk '$0 !~ /^[[:space:]]*#/ && NF' "$proxy_temp" | wc -l)
           
           # E. 写入 Proxy.yaml 最终文件 (按 YAML 格式化输出)
           echo "# NAME: 深巷有喵的「Proxy」规则" > "$PROXY_TARGET"
@@ -217,7 +227,7 @@ jobs:
               echo "  - '$line'" >> "$PROXY_TARGET"
             fi
           done < "$proxy_temp"
-          rm "$proxy_temp"
+          rm -f "$proxy_temp"
 
           # --- 第三部分：Game.yaml 聚合处理 ---
           GAME_TARGET="Rules/Game.yaml"
@@ -226,9 +236,9 @@ jobs:
           game_temp=$(mktemp)
           
           # A. Game 手动规则
-          if [ -f "$GAME_MANUAL" ]; then
+          if [ -f "$GAME_MANUAL" ] && [ -s "$GAME_MANUAL" ]; then
             echo "# ======= 手动维护规则 ========" >> "$game_temp"
-            grep -iv 'payload:' "$GAME_MANUAL" | sed -E "s/^[[:space:]]*-?[[:space:]]*['\"]?//g; s/['\"]?[[:space:]]*$//g" >> "$game_temp"
+            awk 'tolower($0) !~ /payload:/ && $0 !~ /^[[:space:]]*#/ && NF' "$GAME_MANUAL" | sed -E "s/^[[:space:]]*-?[[:space:]]*['\"]?//g; s/['\"]?[[:space:]]*$//g" >> "$game_temp"
             echo "" >> "$game_temp"
           fi
           
@@ -244,11 +254,17 @@ jobs:
             name="${sub%%|*}"
             url="${sub#*|}"
             echo "# ======= $name ========" >> "$game_temp"
-            if [ -f "$GAME_EXCLUDE" ] && [ -s "$GAME_EXCLUDE" ]; then
-              curl -sL "$url" | grep -iv 'payload:' | sed -E "s/^[[:space:]]*-?[[:space:]]*['\"]?//g; s/['\"]?[[:space:]]*$//g" | grep -v '^[[:space:]]*$' | grep -vFf "$GAME_EXCLUDE" >> "$game_temp"
+            temp_sub=$(mktemp)
+            if curl -fsL "$url" | awk 'tolower($0) !~ /payload:/ && $0 !~ /^[[:space:]]*#/ && NF' | sed -E "s/^[[:space:]]*-?[[:space:]]*['\"]?//g; s/['\"]?[[:space:]]*$//g" > "$temp_sub"; then
+              if [ -f "$GAME_EXCLUDE" ] && [ -s "$GAME_EXCLUDE" ]; then
+                grep -vFf "$GAME_EXCLUDE" "$temp_sub" >> "$game_temp" || true
+              else
+                cat "$temp_sub" >> "$game_temp"
+              fi
             else
-              curl -sL "$url" | grep -iv 'payload:' | sed -E "s/^[[:space:]]*-?[[:space:]]*['\"]?//g; s/['\"]?[[:space:]]*$//g" | grep -v '^[[:space:]]*$' >> "$game_temp"
+              echo "Warning: Failed to download $url"
             fi
+            rm -f "$temp_sub"
             echo "" >> "$game_temp"
           done
           
@@ -257,9 +273,9 @@ jobs:
           awk '/^#|^[[:space:]]*$/ {print; next} !seen[$0]++' "$game_temp" > "${game_temp}.tmp" && mv "${game_temp}.tmp" "$game_temp"
           
           # D. 统计 Game 规则数
-          game_count=$(grep -v '^[[:space:]]*#' "$game_temp" | grep -v '^[[:space:]]*$' | wc -l)
+          game_count=$(awk '$0 !~ /^[[:space:]]*#/ && NF' "$game_temp" | wc -l)
           
-          # E. 写入 Game.yaml 最终文件 (按 YAML 格式化输出)
+          # E. 写入 Game.yaml 最终文件
           echo "# NAME: 深巷有喵的「Game」规则" > "$GAME_TARGET"
           echo "# AUTHOR: Rabbit-Spec" >> "$GAME_TARGET"
           echo "# REPO: https://github.com/Rabbit-Spec/Clash" >> "$GAME_TARGET"
@@ -279,7 +295,7 @@ jobs:
               echo "  - '$line'" >> "$GAME_TARGET"
             fi
           done < "$game_temp"
-          rm "$game_temp"
+          rm -f "$game_temp"
 
       # 步骤 3：Git 提交与推送到远程仓库
       - name: Commit and Push Changes
