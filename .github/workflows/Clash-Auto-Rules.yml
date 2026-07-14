@@ -1,5 +1,5 @@
 # 深巷有喵的「Clash」上游同步规则
-# 版本：1.0.5
+# 版本：1.0.6
 # 日期：2026.07.14
 # 作者：https://github.com/Rabbit-Spec/Clash
 
@@ -158,6 +158,9 @@ jobs:
           
           URL_PROXY="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GlobalMedia/GlobalMedia_Classical_No_Resolve.yaml"
           process_rule "$URL_PROXY" "GlobalMedia.yaml" "深巷有喵的「GlobalMedia」规则"  
+
+          URL_PROXY="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Lan/Lan.yaml"
+          process_rule "$URL_PROXY" "LAN.yaml" "深巷有喵的「LAN」规则"
 
           # --- 第二部分：Proxy.yaml 聚合处理 ---
           PROXY_TARGET="Rules/Proxy.yaml"
