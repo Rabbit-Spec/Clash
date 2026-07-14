@@ -1,5 +1,5 @@
 # 深巷有喵的「Clash」上游同步规则
-# 版本：1.0.1
+# 版本：1.0.2
 # 日期：2026.07.14
 # 作者：https://github.com/Rabbit-Spec/Clash
 
@@ -204,7 +204,7 @@ jobs:
           sed -i 's/\r//g' "$proxy_temp"
           awk '/^#|^[[:space:]]*$/ {print; next} !seen[$0]++' "$proxy_temp" > "${proxy_temp}.tmp" && mv "${proxy_temp}.tmp" "$proxy_temp"
 
-          # D. 统计 Proxy 规则数 (安全统计)
+          # D. 统计 Proxy 规则数
           proxy_count=$(awk '$0 !~ /^[[:space:]]*#/ && NF' "$proxy_temp" | wc -l)
           
           # E. 写入 Proxy.yaml 最终文件 (按 YAML 格式化输出)
