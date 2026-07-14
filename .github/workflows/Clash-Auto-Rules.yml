@@ -1,5 +1,5 @@
 # 深巷有喵的「Clash」上游同步规则
-# 版本：1.0.3
+# 版本：1.0.4
 # 日期：2026.07.14
 # 作者：https://github.com/Rabbit-Spec/Clash
 
@@ -81,25 +81,23 @@ jobs:
             # D. 统计非注释且非空行的行数
             local rule_count=$(awk '$0 !~ /^[[:space:]]*#/ && NF' "$temp_body" | wc -l)
             
-            # E. 构造最终文件：Header
+            # E. 构造最终文件：Header + payload: 声明
             echo "# NAME: $display_name" > "$target_path"
             echo "# AUTHOR: Rabbit-Spec" >> "$target_path"
             echo "# REPO: https://github.com/Rabbit-Spec/Clash" >> "$target_path"
             echo "# UPDATED: $UPDATE_TIME" >> "$target_path"
             echo "# TOTAL: $rule_count" >> "$target_path"
             echo "" >> "$target_path"
+            echo "payload:" >> "$target_path"
             
-            # F. 统一按 YAML 格式化写入
-            local payload_written=false
+            # F. 统一按 YAML 格式化写入 (已移出单引号，注释和空行均自动缩进)
             while IFS= read -r line || [ -n "$line" ]; do
-              if [[ "$line" =~ ^# ]] || [ -z "$line" ]; then
-                echo "$line" >> "$target_path"
+              if [[ "$line" =~ ^# ]]; then
+                echo "  $line" >> "$target_path"
+              elif [ -z "$line" ]; then
+                echo "" >> "$target_path"
               else
-                if [ "$payload_written" = false ]; then
-                  echo "payload:" >> "$target_path"
-                  payload_written=true
-                fi
-                echo "  - '$line'" >> "$target_path"
+                echo "  - $line" >> "$target_path"
               fi
             done < "$temp_body"
             
@@ -126,7 +124,7 @@ jobs:
           process_rule "$URL_PROXY" "Apple.yaml" "深巷有喵的「Apple」规则"
 
           URL_PROXY="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Google/Google_No_Resolve.yaml"
-          process_rule "$URL_PROXY" "Google.yaml" "深巷有喵的「Google」规则"
+          process_rule "$URL_PROXY" "Google.yaml" "深巷有喵的「Google`规则"
 
           URL_PROXY="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Instagram/Instagram_No_Resolve.yaml"
           process_rule "$URL_PROXY" "Instagram.yaml" "深巷有喵的「Instagram」规则"
@@ -214,17 +212,15 @@ jobs:
           echo "# UPDATED: $UPDATE_TIME" >> "$PROXY_TARGET"
           echo "# TOTAL: $proxy_count" >> "$PROXY_TARGET"
           echo "" >> "$PROXY_TARGET"
+          echo "payload:" >> "$PROXY_TARGET"
           
-          proxy_payload_written=false # 修正：全局上下文中已移除 local 关键字
           while IFS= read -r line || [ -n "$line" ]; do
-            if [[ "$line" =~ ^# ]] || [ -z "$line" ]; then
-              echo "$line" >> "$PROXY_TARGET"
+            if [[ "$line" =~ ^# ]]; then
+              echo "  $line" >> "$PROXY_TARGET"
+            elif [ -z "$line" ]; then
+              echo "" >> "$PROXY_TARGET"
             else
-              if [ "$proxy_payload_written" = false ]; then
-                echo "payload:" >> "$PROXY_TARGET"
-                proxy_payload_written=true
-              fi
-              echo "  - '$line'" >> "$PROXY_TARGET"
+              echo "  - $line" >> "$PROXY_TARGET"
             fi
           done < "$proxy_temp"
           rm -f "$proxy_temp"
@@ -282,17 +278,15 @@ jobs:
           echo "# UPDATED: $UPDATE_TIME" >> "$GAME_TARGET"
           echo "# TOTAL: $game_count" >> "$GAME_TARGET"
           echo "" >> "$GAME_TARGET"
+          echo "payload:" >> "$GAME_TARGET"
           
-          game_payload_written=false # 修正：全局上下文中已移除 local 关键字
           while IFS= read -r line || [ -n "$line" ]; do
-            if [[ "$line" =~ ^# ]] || [ -z "$line" ]; then
-              echo "$line" >> "$GAME_TARGET"
+            if [[ "$line" =~ ^# ]]; then
+              echo "  $line" >> "$GAME_TARGET"
+            elif [ -z "$line" ]; then
+              echo "" >> "$GAME_TARGET"
             else
-              if [ "$game_payload_written" = false ]; then
-                echo "payload:" >> "$GAME_TARGET"
-                game_payload_written=true
-              fi
-              echo "  - '$line'" >> "$GAME_TARGET"
+              echo "  - $line" >> "$GAME_TARGET"
             fi
           done < "$game_temp"
           rm -f "$game_temp"
