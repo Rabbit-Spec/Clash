@@ -1,0 +1,294 @@
+# 深巷有喵的「Clash」上游同步规则
+# 版本：1.0.0
+# 日期：2026.07.14
+# 作者：https://github.com/Rabbit-Spec/Clash
+
+name: Auto-Clash-Rules
+
+# 触发器配置
+on:
+  schedule:
+    # 定时任务：北京时间每天 06:00 执行
+    - cron: '0 22 * * *'
+  # 允许手动触发
+  workflow_dispatch:
+
+# 权限配置
+permissions:
+  contents: write
+
+jobs:
+  update-rules:
+    runs-on: ubuntu-latest
+    
+    # 强制所有 JavaScript Actions 使用 Node.js 24
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+      
+    steps:
+      # 步骤 1：检出代码
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # 步骤 2：下载、清洗、合并去重、统计并归档
+      - name: Download, Merge and Filter Rules
+        run: |
+          # 创建输出目录及手动规则存储目录
+          mkdir -p Rules/Manual
+          
+          # 获取北京时间
+          UPDATE_TIME=$(TZ="Asia/Shanghai" date +"%Y.%m.%d %H:%M:%S")
+          
+          # 1. 定义标准处理函数 (统一输出为 YAML 格式)
+          process_rule() {
+            local source_url=$1
+            local target_name=$2
+            local display_name=$3
+            
+            local target_path="Rules/$target_name"
+            local filename_no_ext="${target_name%.*}"
+            local manual_file="Rules/Manual/${filename_no_ext}.txt"
+            local exclude_file="Rules/Manual/${filename_no_ext}.exclude.txt"
+            
+            # 创建临时文件存储规则正文
+            temp_body=$(mktemp)
+            
+            # A. 合并手动追加规则 (处于文件顶部，获取最高去重优先级)
+            if [ -f "$manual_file" ]; then
+              echo "# ======= 手动维护规则 ========" >> "$temp_body"
+              grep -iv 'payload:' "$manual_file" | sed -E "s/^[[:space:]]*-?[[:space:]]*['\"]?//g; s/['\"]?[[:space:]]*$//g" >> "$temp_body"
+              echo "" >> "$temp_body"
+            fi
+            
+            # B. 写入上游同步规则
+            echo "# ======= 上游同步规则 ========" >> "$temp_body"
+            if [ -f "$exclude_file" ] && [ -s "$exclude_file" ]; then
+              # 下载 -> 过滤 payload -> 净化格式 -> 剔除排除列表关键字 -> 写入缓存
+              curl -sL "$source_url" | grep -iv 'payload:' | sed -E "s/^[[:space:]]*-?[[:space:]]*['\"]?//g; s/['\"]?[[:space:]]*$//g" | grep -v '^[[:space:]]*$' | grep -vFf "$exclude_file" >> "$temp_body"
+            else
+              # 下载 -> 过滤 payload -> 净化格式 -> 写入缓存
+              curl -sL "$source_url" | grep -iv 'payload:' | sed -E "s/^[[:space:]]*-?[[:space:]]*['\"]?//g; s/['\"]?[[:space:]]*$//g" | grep -v '^[[:space:]]*$' >> "$temp_body"
+            fi
+            
+            # C. 合并去重
+            sed -i 's/\r//g' "$temp_body"
+            awk '/^#|^[[:space:]]*$/ {print; next} !seen[$0]++' "$temp_body" > "${temp_body}.tmp" && mv "${temp_body}.tmp" "$temp_body"
+            
+            # D. 统计非注释且非空行的行数
+            local rule_count=$(grep -v '^[[:space:]]*#' "$temp_body" | grep -v '^[[:space:]]*$' | wc -l)
+            
+            # E. 构造最终文件：Header
+            echo "# NAME: $display_name" > "$target_path"
+            echo "# AUTHOR: Rabbit-Spec" >> "$target_path"
+            echo "# REPO: https://github.com/Rabbit-Spec/Clash" >> "$target_path"
+            echo "# UPDATED: $UPDATE_TIME" >> "$target_path"
+            echo "# TOTAL: $rule_count" >> "$target_path"
+            echo "" >> "$target_path"
+            
+            # F. 统一按 YAML 格式化写入
+            local payload_written=false
+            while IFS= read -r line; do
+              if [[ "$line" =~ ^# ]] || [ -z "$line" ]; then
+                echo "$line" >> "$target_path"
+              else
+                if [ "$payload_written" = false ]; then
+                  echo "payload:" >> "$target_path"
+                  payload_written=true
+                fi
+                echo "  - '$line'" >> "$target_path"
+              fi
+            done < "$temp_body"
+            
+            rm "$temp_body"
+          }
+          
+          # --- 第一部分：常规规则同步 (全部统一为 .yaml) ---
+          # Loyalsoldier 仓库
+          URL_PROXY="https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/cncidr.txt"
+          process_rule "$URL_PROXY" "ChinaCIDR.yaml" "深巷有喵的「ChinaCIDR」规则"
+
+          URL_PROXY="https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/direct.txt"
+          process_rule "$URL_PROXY" "China.yaml" "深巷有喵的「China」规则"
+
+          # Sukka 仓库
+          URL_PROXY="https://ruleset.skk.moe/Clash/ip/telegram.txt"
+          process_rule "$URL_PROXY" "Telegram.yaml" "深巷有喵的「Telegram」规则"
+
+          URL_PROXY="https://ruleset.skk.moe/Clash/non_ip/ai.txt"
+          process_rule "$URL_PROXY" "AIGC.yaml" "深巷有喵的「AIGC」规则"
+
+          # blackmatrix7 仓库
+          URL_PROXY="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Apple/Apple_Classical_No_Resolve.yaml"
+          process_rule "$URL_PROXY" "Apple.yaml" "深巷有喵的「Apple」规则"
+
+          URL_PROXY="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Google/Google_No_Resolve.yaml"
+          process_rule "$URL_PROXY" "Google.yaml" "深巷有喵的「Google」规则"
+
+          URL_PROXY="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Instagram/Instagram_No_Resolve.yaml"
+          process_rule "$URL_PROXY" "Instagram.yaml" "深巷有喵的「Instagram」规则"
+
+          URL_PROXY="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Facebook/Facebook_No_Resolve.yaml"
+          process_rule "$URL_PROXY" "Facebook.yaml" "深巷有喵的「Facebook」规则"
+
+          URL_PROXY="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Microsoft/Microsoft_No_Resolve.yaml"
+          process_rule "$URL_PROXY" "Microsoft.yaml" "深巷有喵的「Microsoft」规则"
+
+          URL_PROXY="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/YouTube/YouTube_No_Resolve.yaml"
+          process_rule "$URL_PROXY" "YouTube.yaml" "深巷有喵的「YouTube」规则"
+
+          URL_PROXY="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Netflix/Netflix_Classical_No_Resolve.yaml"
+          process_rule "$URL_PROXY" "Netflix.yaml" "深巷有喵的「Netflix」规则"
+
+          URL_PROXY="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Disney/Disney_No_Resolve.yaml"
+          process_rule "$URL_PROXY" "Disney.yaml" "深巷有喵的「Disney」规则"
+
+          URL_PROXY="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Spotify/Spotify_No_Resolve.yaml"
+          process_rule "$URL_PROXY" "Spotify.yaml" "深巷有喵的「Spotify」规则"
+
+          URL_PROXY="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/TikTok/TikTok_No_Resolve.yaml"
+          process_rule "$URL_PROXY" "TikTok.yaml" "深巷有喵的「TikTok」规则"
+
+          URL_PROXY="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/BiliBili/BiliBili_No_Resolve.yaml"
+          process_rule "$URL_PROXY" "BiliBili.yaml" "深巷有喵的「BiliBili」规则" 
+
+          URL_PROXY="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMedia/ChinaMedia_No_Resolve.yaml"
+          process_rule "$URL_PROXY" "ChinaMedia.yaml" "深巷有喵的「ChinaMedia」规则" 
+          
+          URL_PROXY="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GlobalMedia/GlobalMedia_Classical_No_Resolve.yaml"
+          process_rule "$URL_PROXY" "GlobalMedia.yaml" "深巷有喵的「GlobalMedia」规则"  
+
+          # --- 第二部分：Proxy.yaml 聚合处理 ---
+          PROXY_TARGET="Rules/Proxy.yaml"
+          PROXY_EXCLUDE="Rules/Manual/Proxy.exclude.txt"
+          PROXY_MANUAL="Rules/Manual/Proxy.txt"
+          proxy_temp=$(mktemp)
+          
+          # A. Proxy 手动规则
+          if [ -f "$PROXY_MANUAL" ]; then
+            echo "# ======= 手动维护规则 ========" >> "$proxy_temp"
+            grep -iv 'payload:' "$PROXY_MANUAL" | sed -E "s/^[[:space:]]*-?[[:space:]]*['\"]?//g; s/['\"]?[[:space:]]*$//g" >> "$proxy_temp"
+            echo "" >> "$proxy_temp"
+            echo "" >> "$proxy_temp"
+          fi
+          
+          # B. Proxy 聚合源
+          PROXY_SUBS=(
+            "GitHub|https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GitHub/GitHub_No_Resolve.yaml"
+            "Telegram|https://ruleset.skk.moe/Clash/non_ip/telegram.txt"
+            "Proxy|https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Proxy/Proxy_Classical_No_Resolve.yaml"
+          )
+          
+          for sub in "${PROXY_SUBS[@]}"; do
+            name="${sub%%|*}"
+            url="${sub#*|}"
+            echo "# ======= $name ========" >> "$proxy_temp"
+            if [ -f "$PROXY_EXCLUDE" ] && [ -s "$PROXY_EXCLUDE" ]; then
+              curl -sL "$url" | grep -iv 'payload:' | sed -E "s/^[[:space:]]*-?[[:space:]]*['\"]?//g; s/['\"]?[[:space:]]*$//g" | grep -v '^[[:space:]]*$' | grep -vFf "$PROXY_EXCLUDE" >> "$proxy_temp"
+            else
+              curl -sL "$url" | grep -iv 'payload:' | sed -E "s/^[[:space:]]*-?[[:space:]]*['\"]?//g; s/['\"]?[[:space:]]*$//g" | grep -v '^[[:space:]]*$' >> "$proxy_temp"
+            fi
+            echo "" >> "$proxy_temp"
+          done
+          
+          # C. 合并去重
+          sed -i 's/\r//g' "$proxy_temp"
+          awk '/^#|^[[:space:]]*$/ {print; next} !seen[$0]++' "$proxy_temp" > "${proxy_temp}.tmp" && mv "${proxy_temp}.tmp" "$proxy_temp"
+
+          # D. 统计 Proxy 规则数
+          proxy_count=$(grep -v '^[[:space:]]*#' "$proxy_temp" | grep -v '^[[:space:]]*$' | wc -l)
+          
+          # E. 写入 Proxy.yaml 最终文件 (按 YAML 格式化输出)
+          echo "# NAME: 深巷有喵的「Proxy」规则" > "$PROXY_TARGET"
+          echo "# AUTHOR: Rabbit-Spec" >> "$PROXY_TARGET"
+          echo "# REPO: https://github.com/Rabbit-Spec/Clash" >> "$PROXY_TARGET"
+          echo "# UPDATED: $UPDATE_TIME" >> "$PROXY_TARGET"
+          echo "# TOTAL: $proxy_count" >> "$PROXY_TARGET"
+          echo "" >> "$PROXY_TARGET"
+          
+          local proxy_payload_written=false
+          while IFS= read -r line; do
+            if [[ "$line" =~ ^# ]] || [ -z "$line" ]; then
+              echo "$line" >> "$PROXY_TARGET"
+            else
+              if [ "$proxy_payload_written" = false ]; then
+                echo "payload:" >> "$PROXY_TARGET"
+                proxy_payload_written=true
+              fi
+              echo "  - '$line'" >> "$PROXY_TARGET"
+            fi
+          done < "$proxy_temp"
+          rm "$proxy_temp"
+
+          # --- 第三部分：Game.yaml 聚合处理 ---
+          GAME_TARGET="Rules/Game.yaml"
+          GAME_EXCLUDE="Rules/Manual/Game.exclude.txt"
+          GAME_MANUAL="Rules/Manual/Game.txt"
+          game_temp=$(mktemp)
+          
+          # A. Game 手动规则
+          if [ -f "$GAME_MANUAL" ]; then
+            echo "# ======= 手动维护规则 ========" >> "$game_temp"
+            grep -iv 'payload:' "$GAME_MANUAL" | sed -E "s/^[[:space:]]*-?[[:space:]]*['\"]?//g; s/['\"]?[[:space:]]*$//g" >> "$game_temp"
+            echo "" >> "$game_temp"
+          fi
+          
+          # B. Game 聚合源
+          GAME_SUBS=(
+            "Epic|https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/Epic/Epic_No_Resolve.yaml"
+            "Sony|https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/Sony/Sony_No_Resolve.yaml"
+            "Steam|https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/Steam/Steam_No_Resolve.yaml"
+            "Nintendo|https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/Nintendo/Nintendo_No_Resolve.yaml"
+          )
+          
+          for sub in "${GAME_SUBS[@]}"; do
+            name="${sub%%|*}"
+            url="${sub#*|}"
+            echo "# ======= $name ========" >> "$game_temp"
+            if [ -f "$GAME_EXCLUDE" ] && [ -s "$GAME_EXCLUDE" ]; then
+              curl -sL "$url" | grep -iv 'payload:' | sed -E "s/^[[:space:]]*-?[[:space:]]*['\"]?//g; s/['\"]?[[:space:]]*$//g" | grep -v '^[[:space:]]*$' | grep -vFf "$GAME_EXCLUDE" >> "$game_temp"
+            else
+              curl -sL "$url" | grep -iv 'payload:' | sed -E "s/^[[:space:]]*-?[[:space:]]*['\"]?//g; s/['\"]?[[:space:]]*$//g" | grep -v '^[[:space:]]*$' >> "$game_temp"
+            fi
+            echo "" >> "$game_temp"
+          done
+          
+          # C. 合并去重
+          sed -i 's/\r//g' "$game_temp"
+          awk '/^#|^[[:space:]]*$/ {print; next} !seen[$0]++' "$game_temp" > "${game_temp}.tmp" && mv "${game_temp}.tmp" "$game_temp"
+          
+          # D. 统计 Game 规则数
+          game_count=$(grep -v '^[[:space:]]*#' "$game_temp" | grep -v '^[[:space:]]*$' | wc -l)
+          
+          # E. 写入 Game.yaml 最终文件 (按 YAML 格式化输出)
+          echo "# NAME: 深巷有喵的「Game」规则" > "$GAME_TARGET"
+          echo "# AUTHOR: Rabbit-Spec" >> "$GAME_TARGET"
+          echo "# REPO: https://github.com/Rabbit-Spec/Clash" >> "$GAME_TARGET"
+          echo "# UPDATED: $UPDATE_TIME" >> "$GAME_TARGET"
+          echo "# TOTAL: $game_count" >> "$GAME_TARGET"
+          echo "" >> "$GAME_TARGET"
+          
+          local game_payload_written=false
+          while IFS= read -r line; do
+            if [[ "$line" =~ ^# ]] || [ -z "$line" ]; then
+              echo "$line" >> "$GAME_TARGET"
+            else
+              if [ "$game_payload_written" = false ]; then
+                echo "payload:" >> "$GAME_TARGET"
+                game_payload_written=true
+              fi
+              echo "  - '$line'" >> "$GAME_TARGET"
+            fi
+          done < "$game_temp"
+          rm "$game_temp"
+
+      # 步骤 3：Git 提交与推送到远程仓库
+      - name: Commit and Push Changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add Rules/
+          if ! git diff --staged --quiet; then
+            COMMIT_TIME=$(TZ="Asia/Shanghai" date +"%Y.%m.%d %H:%M:%S")
+            git commit -m "$COMMIT_TIME Update"
+            git push
+          fi
