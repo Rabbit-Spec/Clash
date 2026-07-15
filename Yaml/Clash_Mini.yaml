@@ -1,6 +1,6 @@
 # 深巷有喵的「Clash_Mini」配置
 # 日期：2026-07-15
-# 版本：3.0.1
+# 版本：3.0.2
 # 配置作者：https://github.com/Rabbit-Spec
 # 适用版本：所有使用 Mihomo 内核的程序
 
@@ -186,5 +186,7 @@ rules:
  - RULE-SET,China,DIRECT
 # > ChinaCIDR
  - RULE-SET,ChinaCIDR,DIRECT
+# > GEOIP
+ - GEOIP, CN, DIRECT
 # > 兜底规则
  - MATCH,Proxy
