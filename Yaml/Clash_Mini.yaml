@@ -1,6 +1,6 @@
 # 深巷有喵的「Clash_Mini」配置
-# 日期：2026-07-14
-# 版本：3.0.0
+# 日期：2026-07-15
+# 版本：3.0.1
 # 配置作者：https://github.com/Rabbit-Spec
 # 适用版本：所有使用 Mihomo 内核的程序
 
@@ -114,7 +114,7 @@ FilterSG: &FilterSG '^(?=.*((?i)🇸🇬|新加坡|狮|(\b(SG|Singapore)\b))).*$
 FilterKR: &FilterKR '^(?=.*((?i)🇰🇷|韩国|韓|首尔|(\b(KR|Korea)\b))).*$'
 
 # 锚点 - 故障转移参数 [每 10 秒一次惰性健康检查，时延超过 3 秒判定为失败，失败 3 次则自动触发健康检查]
-FallBack: &FallBack {type: fallback, interval: 5, lazy: true, url: 'http://cp.cloudflare.com/generate_204', disable-udp: false, timeout: 3000, max-failed-times: 2, hidden: true, include-all-providers: true}
+FallBack: &FallBack {type: fallback, interval: 5, lazy: true, url: 'http://cp.cloudflare.com/generate_204', disable-udp: false, timeout: 3000, max-failed-times: 2, hidden: false, include-all-providers: true}
 
 # 锚点 - 规则参数 [每天更新一次订阅规则，更新规则时使用Proxy策略]
 RuleSet: &RuleSet {type: http, behavior: classical, interval: 86400, format: yaml, proxy: Proxy}
@@ -126,11 +126,11 @@ proxy-groups:
   - {name: AIGC, type: select, proxies: [Proxy, 🇭🇰 香港节点, 🇺🇸 美国节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点], icon: 'https://raw.githubusercontent.com/Rabbit-Spec/Surge/Master/Conf/icon/ChatGPT.png'}
   - {name: GlobalMedia, type: select, proxies: [Proxy, 🇭🇰 香港节点, 🇺🇸 美国节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点], icon: 'https://raw.githubusercontent.com/Rabbit-Spec/Surge/Master/Conf/icon/GlobalMedia.png'}
 
-  - {name: 🇭🇰 香港节点, <<: *FallBack, filter: *FilterHK}
-  - {name: 🇺🇸 美国节点, <<: *FallBack, filter: *FilterUS}
-  - {name: 🇯🇵 日本节点, <<: *FallBack, filter: *FilterJP}
-  - {name: 🇰🇷 韩国节点, <<: *FallBack, filter: *FilterKR}
-  - {name: 🇸🇬 新加坡节点, <<: *FallBack, filter: *FilterSG}
+  - {name: 🇭🇰 香港节点, <<: *FallBack, filter: *FilterHK, icon: 'https://raw.githubusercontent.com/Rabbit-Spec/Surge/Master/Conf/icon/Country-Hong_Kong.png'}
+  - {name: 🇺🇸 美国节点, <<: *FallBack, filter: *FilterUS, icon: 'https://raw.githubusercontent.com/Rabbit-Spec/Surge/Master/Conf/icon/Country-United_States.png'}
+  - {name: 🇯🇵 日本节点, <<: *FallBack, filter: *FilterJP, icon: 'https://raw.githubusercontent.com/Rabbit-Spec/Surge/Master/Conf/icon/Country-Japan.png'}
+  - {name: 🇰🇷 韩国节点, <<: *FallBack, filter: *FilterKR, icon: 'https://raw.githubusercontent.com/Rabbit-Spec/Surge/Master/Conf/icon/Country-South_Korea.png'}
+  - {name: 🇸🇬 新加坡节点, <<: *FallBack, filter: *FilterSG, icon: 'https://raw.githubusercontent.com/Rabbit-Spec/Surge/Master/Conf/icon/Country-Singapore.png'}
 
 # 订阅规则
 rule-providers:
