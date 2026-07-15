@@ -1,6 +1,6 @@
 # 深巷有喵的「Clash_Max」配置
 # 日期：2026-07-15
-# 版本：3.0.2
+# 版本：3.0.3
 # 配置作者：https://github.com/Rabbit-Spec
 # 适用版本：所有使用 Mihomo 内核的程序
 
@@ -90,10 +90,12 @@ dns:
   default-nameserver:
     - 223.5.5.5
     - 119.29.29.29
+# DoH 服务器（部分机场拥有自己的 DoH 来保证节点解析）
   nameserver:
     - https://223.5.5.5/dns-query
     - https://doh.pub/dns-query
 
+port:
 proxies:
 
 # 锚点 - 节点订阅的参数 [每24小时更新一次订阅节点，每 60 秒一次健康检查]
@@ -260,6 +262,6 @@ rules:
 # > ChinaCIDR
  - RULE-SET,ChinaCIDR,DIRECT
 # > GEOIP
- - GEOIP, CN, DIRECT
+ - GEOIP,CN,DIRECT
 # > 兜底规则
  - MATCH,Proxy
