@@ -1,5 +1,5 @@
 # 深巷有喵的「Clash」上游同步规则
-# 版本：1.0.6
+# 版本：1.0.7
 # 日期：2026.07.14
 # 作者：https://github.com/Rabbit-Spec/Clash
 
@@ -157,7 +157,16 @@ jobs:
           process_rule "$URL_PROXY" "ChinaMedia.yaml" "深巷有喵的「ChinaMedia」规则" 
           
           URL_PROXY="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GlobalMedia/GlobalMedia_Classical_No_Resolve.yaml"
-          process_rule "$URL_PROXY" "GlobalMedia.yaml" "深巷有喵的「GlobalMedia」规则"  
+          process_rule "$URL_PROXY" "GlobalMedia.yaml" "深巷有喵的「GlobalMedia」规则" 
+
+          URL_PROXY="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/PayPal/PayPal_No_Resolve.yaml"
+          process_rule "$URL_PROXY" "PayPal.yaml" "深巷有喵的「PayPal」规则"
+
+          URL_PROXY="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Instagram/Instagram_No_Resolve.yaml"
+          process_rule "$URL_PROXY" "Instagram.yaml" "深巷有喵的「Instagram」规则"
+
+          URL_PROXY="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Whatsapp/Whatsapp_No_Resolve.yaml"
+          process_rule "$URL_PROXY" "Whatsapp.yaml" "深巷有喵的「Whatsapp」规则"
 
           URL_PROXY="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Lan/Lan.yaml"
           process_rule "$URL_PROXY" "LAN.yaml" "深巷有喵的「LAN」规则"
