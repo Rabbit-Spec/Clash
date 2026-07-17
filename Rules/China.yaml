@@ -1,8 +1,8 @@
 # NAME: 深巷有喵的「China」规则
 # AUTHOR: Rabbit-Spec
 # REPO: https://github.com/Rabbit-Spec/Clash
-# UPDATED: 2026.07.17 06:47:49
-# TOTAL: 112067
+# UPDATED: 2026.07.18 06:38:25
+# TOTAL: 112077
 
 payload:
   # ======= 手动维护规则 ========
@@ -48,6 +48,7 @@ payload:
   - aod.itunes.apple.com
   - api-edge.apps.apple.com
   - api.alibabacloud.com
+  - api.blipsandchitz.me
   - app-analytics-services.com
   - app-measurement-cn.com
   - app-measurement.com
@@ -28596,6 +28597,7 @@ payload:
   - +.dcyz.com
   - +.dcyzq.com
   - +.dczcsc.com
+  - +.dczcy.com
   - +.dczkj.com
   - +.dczy168.com
   - +.dd-advisor.com
@@ -29576,6 +29578,7 @@ payload:
   - +.didichuxing.com
   - +.dididapiao.com
   - +.dididi88.com
+  - +.didifinance.com
   - +.didiglobal.com
   - +.didimobility.com
   - +.didiopenapi.com
@@ -36415,6 +36418,7 @@ payload:
   - +.fuca-china.com
   - +.fucantec.com
   - +.fuchaipower.com
+  - +.fuchenkj.com
   - +.fuchuangyu.com
   - +.fucnm.com
   - +.fucol.club
@@ -47632,6 +47636,7 @@ payload:
   - +.hrs100.com
   - +.hrsalon.org
   - +.hrsay.com
+  - +.hrsecn.com
   - +.hrsee.com
   - +.hrsel.com
   - +.hrsoft-china.com
@@ -54237,6 +54242,7 @@ payload:
   - +.jieshui8.com
   - +.jieshuitech.com
   - +.jieshuwang.com
+  - +.jietianz.com
   - +.jietu365.com
   - +.jietuhb.com
   - +.jietuosh.com
@@ -79994,6 +80000,7 @@ payload:
   - +.sdseshealth.com
   - +.sdsfjy.com
   - +.sdshangya.com
+  - +.sdshdc.com
   - +.sdshgk.com
   - +.sdshihua.com
   - +.sdshitu.com
@@ -81678,6 +81685,7 @@ payload:
   - +.shicaizhanlan.com
   - +.shicehao.com
   - +.shichangbu.com
+  - +.shicheng6.com
   - +.shichengbao.com
   - +.shichengyi.com
   - +.shichuangsj.com
@@ -92104,6 +92112,7 @@ payload:
   - +.ulikestatic.com
   - +.ulinix.com
   - +.ulinix.tv
+  - +.ulongemg.com
   - +.ulpay.com
   - +.ultracachenode.com
   - +.ultraeda.com
@@ -106878,6 +106887,7 @@ payload:
   - +.yximgs.com
   - +.yxin18.com
   - +.yxinbao.com
+  - +.yxingfan.com
   - +.yxintent.com
   - +.yxit.net
   - +.yxixy.com

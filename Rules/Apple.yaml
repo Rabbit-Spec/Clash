@@ -1,7 +1,7 @@
 # NAME: 深巷有喵的「Apple」规则
 # AUTHOR: Rabbit-Spec
 # REPO: https://github.com/Rabbit-Spec/Clash
-# UPDATED: 2026.07.17 06:47:49
+# UPDATED: 2026.07.18 06:38:25
 # TOTAL: 1593
 
 payload:
@@ -1195,7 +1195,6 @@ payload:
   - DOMAIN-SUFFIX,applepaysupplies.tv
   - DOMAIN-SUFFIX,applewallet.com
   - DOMAIN-SUFFIX,applewallet.tv
-  - DOMAIN-SUFFIX,appsto.re
   - DOMAIN-SUFFIX,appstore.co.id
   - DOMAIN-SUFFIX,appstore.com
   - DOMAIN-SUFFIX,appstore.hk
@@ -1475,7 +1474,6 @@ payload:
   - DOMAIN-SUFFIX,appleenews.com
   - DOMAIN-SUFFIX,applemusic.berlin
   - DOMAIN-SUFFIX,applemusic.co
-  - DOMAIN-SUFFIX,applemusic.com
   - DOMAIN-SUFFIX,applemusic.com.au
   - DOMAIN-SUFFIX,applemusic.hamburg
   - DOMAIN-SUFFIX,applemusic.wang
@@ -1508,7 +1506,10 @@ payload:
   - DOMAIN-SUFFIX,iphoto.wang
   - DOMAIN-SUFFIX,musickit.net
   - DOMAIN-SUFFIX,wwwapplemusic.com
+  - DOMAIN-SUFFIX,applemusic.com
   - DOMAIN-SUFFIX,apple-dns.net
+  - DOMAIN-SUFFIX,appsto.re
+  - DOMAIN-SUFFIX,cdn-apple.com
   - DOMAIN-SUFFIX,digicert.com
   - DOMAIN-SUFFIX,apple-cloudkit.com
   - DOMAIN-SUFFIX,apple-icloud.cn
@@ -1516,7 +1517,6 @@ payload:
   - DOMAIN-SUFFIX,appleicloud.cn
   - DOMAIN-SUFFIX,applemx-icloud.com
   - DOMAIN-SUFFIX,apzones.com
-  - DOMAIN-SUFFIX,cdn-apple.com
   - DOMAIN-SUFFIX,icloud-apple.cn
   - DOMAIN-SUFFIX,icloud-content.com
   - DOMAIN-SUFFIX,icloud-content.com.cn
