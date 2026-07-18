@@ -1,8 +1,8 @@
 # NAME: 深巷有喵的「China」规则
 # AUTHOR: Rabbit-Spec
 # REPO: https://github.com/Rabbit-Spec/Clash
-# UPDATED: 2026.07.18 06:38:25
-# TOTAL: 112077
+# UPDATED: 2026.07.19 06:37:33
+# TOTAL: 112078
 
 payload:
   # ======= 手动维护规则 ========
@@ -67815,6 +67815,7 @@ payload:
   - +.mychunyan.net
   - +.myckjr.com
   - +.mycleanmymac.com
+  - +.mycloudnas.com
   - +.mycloudstudy.com
   - +.myclub2.com
   - +.mycnc.org
