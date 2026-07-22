@@ -1,8 +1,8 @@
 # NAME: 深巷有喵的「China」规则
 # AUTHOR: Rabbit-Spec
 # REPO: https://github.com/Rabbit-Spec/Clash
-# UPDATED: 2026.07.22 06:44:13
-# TOTAL: 112135
+# UPDATED: 2026.07.23 06:52:40
+# TOTAL: 112139
 
 payload:
   # ======= 手动维护规则 ========
@@ -20088,6 +20088,7 @@ payload:
   - +.cd-zc.com
   - +.cd00c44f211031.beer
   - +.cd120.com
+  - +.cd120.info
   - +.cd12371.com
   - +.cd1958.com
   - +.cd20.net
@@ -66923,6 +66924,7 @@ payload:
   - +.moe321.com
   - +.moeclub.org
   - +.moedot.net
+  - +.moedu.com
   - +.moeelf.com
   - +.moefactory.com
   - +.moefantasy.com
@@ -90892,6 +90894,7 @@ payload:
   - +.tsingpost.com
   - +.tsingshang.com
   - +.tsingtek.com
+  - +.tsingtengms.com
   - +.tsingtoo.com
   - +.tsingtuo.com
   - +.tsingyangroup.com
@@ -98514,6 +98517,7 @@ payload:
   - +.xcxymw.com
   - +.xcxzww.com
   - +.xcyg.net
+  - +.xcz.im
   - +.xczhmzb.com
   - +.xczhsh.com
   - +.xczim.com
