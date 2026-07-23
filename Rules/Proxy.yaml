@@ -1,8 +1,8 @@
 # NAME: 深巷有喵的「Proxy」规则
 # AUTHOR: Rabbit-Spec
 # REPO: https://github.com/Rabbit-Spec/Clash
-# UPDATED: 2026.07.23 06:52:40
-# TOTAL: 6924
+# UPDATED: 2026.07.24 06:45:55
+# TOTAL: 6926
 
 payload:
   # ======= 手动维护规则 ========
@@ -5715,6 +5715,7 @@ payload:
   - DOMAIN-SUFFIX,toh.info
   - DOMAIN-SUFFIX,token.im
   - DOMAIN-SUFFIX,tokenlon.im
+  - DOMAIN-SUFFIX,tokenplus.app
   - DOMAIN-SUFFIX,tokyo-247.com
   - DOMAIN-SUFFIX,tokyo-hot.com
   - DOMAIN-SUFFIX,tokyocn.com
@@ -6746,6 +6747,7 @@ payload:
   - DOMAIN-SUFFIX,zengjinyan.org
   - DOMAIN-SUFFIX,zenmate.com
   - DOMAIN-SUFFIX,zenmate.com.ru
+  - DOMAIN-SUFFIX,zenmux.ai
   - DOMAIN-SUFFIX,zerohedge.com
   - DOMAIN-SUFFIX,zeronet.io
   - DOMAIN-SUFFIX,zeutch.com
