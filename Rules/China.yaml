@@ -1,8 +1,8 @@
 # NAME: 深巷有喵的「China」规则
 # AUTHOR: Rabbit-Spec
 # REPO: https://github.com/Rabbit-Spec/Clash
-# UPDATED: 2026.07.29 06:50:15
-# TOTAL: 112139
+# UPDATED: 2026.07.30 06:47:58
+# TOTAL: 112140
 
 payload:
   # ======= 手动维护规则 ========
@@ -100891,6 +100891,7 @@ payload:
   - +.xmmuye.com
   - +.xmnjdwx.com
   - +.xmocloud01.com
+  - +.xmoj.tech
   - +.xmonecode.com
   - +.xmos.tv
   - +.xmov.ai
