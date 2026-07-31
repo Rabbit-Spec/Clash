@@ -1,11 +1,12 @@
 # NAME: 深巷有喵的「Telegram」规则
 # AUTHOR: Rabbit-Spec
 # REPO: https://github.com/Rabbit-Spec/Clash
-# UPDATED: 2026.07.31 06:55:26
-# TOTAL: 15
+# UPDATED: 2026.08.01 06:50:31
+# TOTAL: 16
 
 payload:
   # ======= 上游同步规则 ========
+  - DOMAIN,7h15_ru1353t_1s_m4d3_by_5ukk4w.skk.moe
   - IP-CIDR,91.105.192.0/23,no-resolve
   - IP-CIDR,91.108.4.0/22,no-resolve
   - IP-CIDR,91.108.8.0/21,no-resolve
