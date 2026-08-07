@@ -1,8 +1,8 @@
 # NAME: 深巷有喵的「AIGC」规则
 # AUTHOR: Rabbit-Spec
 # REPO: https://github.com/Rabbit-Spec/Clash
-# UPDATED: 2026.08.07 09:27:22
-# TOTAL: 49
+# UPDATED: 2026.08.08 06:24:18
+# TOTAL: 50
 
 payload:
   # ======= 上游同步规则 ========
@@ -23,6 +23,7 @@ payload:
   - DOMAIN-SUFFIX,openart.ai
   - DOMAIN-SUFFIX,chatgpt.com
   - DOMAIN-SUFFIX,clipdrop.co
+  - DOMAIN-SUFFIX,chatgpt.site
   - DOMAIN-SUFFIX,deepmind.com
   - DOMAIN,ai.google.dev
   - DOMAIN-SUFFIX,anthropic.com
