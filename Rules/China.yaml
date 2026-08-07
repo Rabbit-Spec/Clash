@@ -1,8 +1,8 @@
 # NAME: 深巷有喵的「China」规则
 # AUTHOR: Rabbit-Spec
 # REPO: https://github.com/Rabbit-Spec/Clash
-# UPDATED: 2026.08.06 06:47:50
-# TOTAL: 111519
+# UPDATED: 2026.08.07 09:27:22
+# TOTAL: 111522
 
 payload:
   # ======= 手动维护规则 ========
@@ -63937,6 +63937,7 @@ payload:
   - +.madajiefood.com
   - +.madaomall.com
   - +.madboxi.com
+  - +.made-in-china.com
   - +.madefuns.com
   - +.madeinchinastone.com
   - +.madewei.com
@@ -65675,6 +65676,7 @@ payload:
   - +.microxiang.com
   - +.microyan.com
   - +.microzuji.com
+  - +.micstatic.com
   - +.mictormedical.com
   - +.micu.hk
   - +.micun.com
@@ -73277,6 +73279,7 @@ payload:
   - +.powercx.com
   - +.powerde.com
   - +.powereasy.net
+  - +.poweremarket.com
   - +.powerex1.com
   - +.powerflow-tech.com
   - +.powerfulchina.com
