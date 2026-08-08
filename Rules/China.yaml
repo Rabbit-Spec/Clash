@@ -1,8 +1,8 @@
 # NAME: 深巷有喵的「China」规则
 # AUTHOR: Rabbit-Spec
 # REPO: https://github.com/Rabbit-Spec/Clash
-# UPDATED: 2026.08.08 06:24:18
-# TOTAL: 111522
+# UPDATED: 2026.08.09 06:16:57
+# TOTAL: 111523
 
 payload:
   # ======= 手动维护规则 ========
@@ -61245,6 +61245,7 @@ payload:
   - +.lifevc.com
   - +.lifevccdn.com
   - +.lifeweeker.com
+  - +.lifexue.com
   - +.lifeyk.com
   - +.lifeyn.net
   - +.lifezb.com
