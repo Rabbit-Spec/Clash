@@ -1,7 +1,7 @@
 # NAME: 深巷有喵的「Proxy」规则
 # AUTHOR: Rabbit-Spec
 # REPO: https://github.com/Rabbit-Spec/Clash
-# UPDATED: 2026.08.19 06:11:16
+# UPDATED: 2026.08.20 06:13:17
 # TOTAL: 6933
 
 payload:
@@ -1301,7 +1301,6 @@ payload:
   - DOMAIN-SUFFIX,comments.app
   - DOMAIN-SUFFIX,commentshk.com
   - DOMAIN-SUFFIX,communistcrimes.org
-  - DOMAIN-SUFFIX,community.windy.com
   - DOMAIN-SUFFIX,communitychoicecu.com
   - DOMAIN-SUFFIX,comodoca.com
   - DOMAIN-SUFFIX,comparitech.com
@@ -6426,6 +6425,7 @@ payload:
   - DOMAIN-SUFFIX,wilsoncenter.org
   - DOMAIN-SUFFIX,windowsphoneme.com
   - DOMAIN-SUFFIX,windscribe.com
+  - DOMAIN-SUFFIX,windy.com
   - DOMAIN-SUFFIX,wingamestore.com
   - DOMAIN-SUFFIX,wingy.site
   - DOMAIN-SUFFIX,winning11.com
