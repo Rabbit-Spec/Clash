@@ -1,8 +1,8 @@
 # NAME: 深巷有喵的「Proxy」规则
 # AUTHOR: Rabbit-Spec
 # REPO: https://github.com/Rabbit-Spec/Clash
-# UPDATED: 2026.08.21 06:15:16
-# TOTAL: 6933
+# UPDATED: 2026.08.22 06:12:31
+# TOTAL: 6934
 
 payload:
   # ======= 手动维护规则 ========
@@ -4198,6 +4198,7 @@ payload:
   - DOMAIN-SUFFIX,okpool.me
   - DOMAIN-SUFFIX,okx.com
   - DOMAIN-SUFFIX,old-cat.net
+  - DOMAIN-SUFFIX,oldmapsonline.org
   - DOMAIN-SUFFIX,olehdtv.com
   - DOMAIN-SUFFIX,olelive.com
   - DOMAIN-SUFFIX,olevod.com
