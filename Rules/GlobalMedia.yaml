@@ -1,8 +1,8 @@
 # NAME: 深巷有喵的「GlobalMedia」规则
 # AUTHOR: Rabbit-Spec
 # REPO: https://github.com/Rabbit-Spec/Clash
-# UPDATED: 2026.08.24 06:10:24
-# TOTAL: 2265
+# UPDATED: 2026.08.24 21:00:05
+# TOTAL: 2263
 
 payload:
   # ======= 上游同步规则 ========
@@ -202,8 +202,6 @@ payload:
   - DOMAIN-SUFFIX,cstatic.net
   - DOMAIN-SUFFIX,curbed.com
   - DOMAIN-SUFFIX,curiositystream.com
-  - DOMAIN-SUFFIX,cursor.com
-  - DOMAIN-SUFFIX,cursor.sh
   - DOMAIN-SUFFIX,cwseed.com
   - DOMAIN-SUFFIX,cwtv.com
   - DOMAIN-SUFFIX,d9.flashtalking.com
