@@ -1,8 +1,8 @@
 # NAME: 深巷有喵的「Proxy」规则
 # AUTHOR: Rabbit-Spec
 # REPO: https://github.com/Rabbit-Spec/Clash
-# UPDATED: 2026.08.25 06:14:31
-# TOTAL: 6940
+# UPDATED: 2026.08.26 06:15:12
+# TOTAL: 6942
 
 payload:
   # ======= 手动维护规则 ========
@@ -457,6 +457,7 @@ payload:
   - DOMAIN-SUFFIX,api.mixpanel.com
   - DOMAIN-SUFFIX,api.moomoobull.com
   - DOMAIN-SUFFIX,api.proxlet.com
+  - DOMAIN-SUFFIX,api.shuaiapi.com
   - DOMAIN-SUFFIX,api.termius.com
   - DOMAIN-SUFFIX,apiary.io
   - DOMAIN-SUFFIX,apigee.com
@@ -6529,6 +6530,7 @@ payload:
   - DOMAIN-SUFFIX,x24hr.com
   - DOMAIN-SUFFIX,x365x.com
   - DOMAIN-SUFFIX,x3guide.com
+  - DOMAIN-SUFFIX,x86.fr
   - DOMAIN-SUFFIX,xanga.com
   - DOMAIN-SUFFIX,xbabe.com
   - DOMAIN-SUFFIX,xbookcn.com
