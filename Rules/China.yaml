@@ -1,8 +1,8 @@
 # NAME: 深巷有喵的「China」规则
 # AUTHOR: Rabbit-Spec
 # REPO: https://github.com/Rabbit-Spec/Clash
-# UPDATED: 2026.08.31 08:00:42
-# TOTAL: 111329
+# UPDATED: 2026.09.01 08:53:22
+# TOTAL: 111333
 
 payload:
   # ======= 手动维护规则 ========
@@ -3666,6 +3666,7 @@ payload:
   - +.25fe391eb68e3f9c.com
   - +.25game.com
   - +.25ku.com
+  - +.25mao.com
   - +.25nc.com
   - +.25pp.com
   - +.25q7ekcc67.com
@@ -42484,6 +42485,7 @@ payload:
   - +.gzjkfk.com
   - +.gzjkfund.com
   - +.gzjkjl.com
+  - +.gzjkoa.com
   - +.gzjkqh.com
   - +.gzjkyljt.com
   - +.gzjlp.com
@@ -43439,6 +43441,7 @@ payload:
   - +.hanpupharm.com
   - +.hanqigroup.com
   - +.hanqinghb.com
+  - +.hanqiuming888.com
   - +.hanqunfeng.com
   - +.hans-ad.com
   - +.hanschen.site
@@ -91537,6 +91540,7 @@ payload:
   - +.under-5.shop
   - +.underfill.cc
   - +.uneed.com
+  - +.uneedx.com
   - +.unfish.net
   - +.ungifts.com
   - +.uni-cent.com
