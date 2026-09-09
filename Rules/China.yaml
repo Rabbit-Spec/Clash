@@ -1,8 +1,8 @@
 # NAME: 深巷有喵的「China」规则
 # AUTHOR: Rabbit-Spec
 # REPO: https://github.com/Rabbit-Spec/Clash
-# UPDATED: 2026.09.09 07:44:13
-# TOTAL: 111167
+# UPDATED: 2026.09.10 07:38:49
+# TOTAL: 111168
 
 payload:
   # ======= 手动维护规则 ========
@@ -105042,6 +105042,7 @@ payload:
   - +.yuanpanguoji.com
   - +.yuanqiao.net
   - +.yuanqiao.pw
+  - +.yuanqidesk.com
   - +.yuanqilt.com
   - +.yuanqingsh.com
   - +.yuanqisenlin.com
