@@ -1,8 +1,8 @@
 # NAME: 深巷有喵的「China」规则
 # AUTHOR: Rabbit-Spec
 # REPO: https://github.com/Rabbit-Spec/Clash
-# UPDATED: 2026.09.23 07:54:15
-# TOTAL: 111177
+# UPDATED: 2026.09.24 08:05:53
+# TOTAL: 111179
 
 payload:
   # ======= 手动维护规则 ========
@@ -187,6 +187,7 @@ payload:
   - downloaddispatch.itunes.apple.com
   - dreamspark.download.prss.microsoft.com
   - dreamsparkuat.download.prss.microsoft.com
+  - drivers.amd.com
   - edge.geo.kaspersky.com
   - end-api.shallow.ink
   - end.shallow.ink
@@ -82670,6 +82671,7 @@ payload:
   - +.sjf029.com
   - +.sjfcdn.com
   - +.sjfh168.com
+  - +.sjfls6.com
   - +.sjfpro.com
   - +.sjfzxm.com
   - +.sjg8.com
