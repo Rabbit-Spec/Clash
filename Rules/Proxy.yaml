@@ -1,8 +1,8 @@
 # NAME: 深巷有喵的「Proxy」规则
 # AUTHOR: Rabbit-Spec
 # REPO: https://github.com/Rabbit-Spec/Clash
-# UPDATED: 2026.10.01 08:54:09
-# TOTAL: 6965
+# UPDATED: 2026.10.02 09:11:06
+# TOTAL: 6967
 
 payload:
   # ======= 手动维护规则 ========
@@ -2234,6 +2234,7 @@ payload:
   - DOMAIN-SUFFIX,fututrustee.com
   - DOMAIN-SUFFIX,fux.com
   - DOMAIN-SUFFIX,fuyin.net
+  - DOMAIN-SUFFIX,fuyin116.com
   - DOMAIN-SUFFIX,fuyindiantai.org
   - DOMAIN-SUFFIX,fuyu.org.tw
   - DOMAIN-SUFFIX,fw.cm
@@ -3847,6 +3848,7 @@ payload:
   - DOMAIN-SUFFIX,mummysgold.com
   - DOMAIN-SUFFIX,murmur.tw
   - DOMAIN-SUFFIX,muscdn.com
+  - DOMAIN-SUFFIX,muse.ai
   - DOMAIN-SUFFIX,musicade.net
   - DOMAIN-SUFFIX,musical.ly
   - DOMAIN-SUFFIX,musixmatch.com
