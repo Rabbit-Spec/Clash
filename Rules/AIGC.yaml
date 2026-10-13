@@ -1,8 +1,8 @@
 # NAME: 深巷有喵的「AIGC」规则
 # AUTHOR: Rabbit-Spec
 # REPO: https://github.com/Rabbit-Spec/Clash
-# UPDATED: 2026.10.12 08:48:39
-# TOTAL: 53
+# UPDATED: 2026.10.13 10:45:41
+# TOTAL: 56
 
 payload:
   # ======= 手动维护规则 ========
@@ -44,9 +44,11 @@ payload:
   - DOMAIN-SUFFIX,gemini.google.com
   - DOMAIN-SUFFIX,notebooklm.google
   - DOMAIN,antigravity.google
+  - DOMAIN,server.codeium.com
   - DOMAIN,aida.googleapis.com
   - DOMAIN-SUFFIX,aistudio.google.com
   - DOMAIN-SUFFIX,generativeai.google
+  - DOMAIN,inference.codeium.com
   - DOMAIN-SUFFIX,makersuite.google.com
   - DOMAIN-SUFFIX,notebooklm.google.com
   - DOMAIN,antigravity-unleash.goog
@@ -54,6 +56,7 @@ payload:
   - DOMAIN,gateway.ai.cloudflare.com
   - DOMAIN,aisandbox-pa.googleapis.com
   - DOMAIN-SUFFIX,cloudcode-pa.googleapis.com
+  - DOMAIN,server.self-serve.windsurf.com
   - DOMAIN,robinfrontend-pa.googleapis.com
   - DOMAIN,alkalicore-pa.clients6.google.com
   - DOMAIN,daily-cloudcode-pa.googleapis.com
