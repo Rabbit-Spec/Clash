@@ -1,7 +1,7 @@
 # NAME: 深巷有喵的「China」规则
 # AUTHOR: Rabbit-Spec
 # REPO: https://github.com/Rabbit-Spec/Clash
-# UPDATED: 2026.10.27 08:58:57
+# UPDATED: 2026.10.28 08:48:50
 # TOTAL: 110254
 
 payload:
@@ -486,7 +486,9 @@ payload:
   - sequoia.apple.com
   - service.urchin.com
   - sf-api-token-service.itunes.apple.com
+  - sh-pod1-smp-device.apple.com
   - sh-pod2-smp-device.apple.com
+  - sh-pod3-smp-device.apple.com
   - shazam-insights.cdn-apple.com
   - shell.cdn.office.net
   - smp-device-content.apple.com
@@ -61432,8 +61434,6 @@ payload:
   - +.longanlaw.com
   - +.longau.com
   - +.longbenren.com
-  - +.longbridgeapp.com
-  - +.longbridgehk.com
   - +.longcai.com
   - +.longcai027.com
   - +.longcat.chat
