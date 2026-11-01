@@ -1,11 +1,15 @@
 # NAME: 深巷有喵的「YouTube」规则
 # AUTHOR: Rabbit-Spec
 # REPO: https://github.com/Rabbit-Spec/Clash
-# UPDATED: 2026.11.01 08:32:19
-# TOTAL: 183
+# UPDATED: 2026.11.01 22:38:48
+# TOTAL: 191
 
 payload:
   # ======= 上游同步规则 ========
+  - DOMAIN,youtubei.googleapis.com
+  - DOMAIN,yt3.ggpht.com
+  - DOMAIN,yt3.googleusercontent.com
+  - DOMAIN-SUFFIX,ads.youtube.com
   - DOMAIN-SUFFIX,ggpht.cn
   - DOMAIN-SUFFIX,ggpht.com
   - DOMAIN-SUFFIX,googlevideo.com
@@ -184,8 +188,12 @@ payload:
   - DOMAIN-SUFFIX,youtubekids.com
   - DOMAIN-SUFFIX,youtubemobilesupport.com
   - DOMAIN-SUFFIX,yt.be
+  - DOMAIN-SUFFIX,yt3.ggpht.com
   - DOMAIN-SUFFIX,ytimg.com
   - DOMAIN-KEYWORD,youtube
+  - DOMAIN-WILDCARD,youtube.*
+  - DOMAIN-WILDCARD,youtube.*.*
+  - DOMAIN-WILDCARD,youtube.com.*
   - IP-CIDR,172.110.32.0/21,no-resolve
   - IP-CIDR,216.73.80.0/20,no-resolve
   - IP-CIDR6,2620:120:e000::/40,no-resolve
