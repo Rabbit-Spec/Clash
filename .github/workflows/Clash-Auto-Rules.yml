@@ -182,13 +182,12 @@ jobs:
           if [ -f "$PROXY_MANUAL" ] && [ -s "$PROXY_MANUAL" ]; then
             echo "# ======= 手动维护规则 ========" >> "$proxy_temp"
             awk 'tolower($0) !~ /payload:/ && $0 !~ /^[[:space:]]*#/ && NF' "$PROXY_MANUAL" | sed -E "s/^[[:space:]]*-?[[:space:]]*['\"]?//g; s/['\"]?[[:space:]]*$//g" >> "$proxy_temp"
-            echo "" >> "$proxy_temp"
           fi
           
           # B. Proxy 聚合源
           PROXY_SUBS=(
             "Telegram|https://ruleset.skk.moe/Clash/non_ip/telegram.txt"
-            "Proxy|https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Proxy/Proxy_Classical_No_Resolve.yaml"
+            "Proxy|https://magicrule.pages.dev/data/_shared/artifacts/Global_classical_84d7c926159da35f.yaml"
           )
           
           for sub in "${PROXY_SUBS[@]}"; do
