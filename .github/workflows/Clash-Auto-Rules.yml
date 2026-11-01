@@ -1,6 +1,6 @@
 # 深巷有喵的「Clash」上游同步规则
-# 版本：1.0.7
-# 日期：2026.07.14
+# 版本：1.4.1
+# 日期：2026.11.01
 # 作者：https://github.com/Rabbit-Spec/Clash
 
 name: Auto-Clash-Rules
@@ -119,57 +119,58 @@ jobs:
           URL_PROXY="https://ruleset.skk.moe/Clash/non_ip/ai.txt"
           process_rule "$URL_PROXY" "AIGC.yaml" "深巷有喵的「AIGC」规则"
 
-          # blackmatrix7 仓库
-          URL_PROXY="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Apple/Apple_Classical_No_Resolve.yaml"
+          # MagicRule 仓库
+          URL_PROXY="https://magicrule.pages.dev/data/_shared/artifacts/Apple_classical_0fa29647e779e764.yaml"
           process_rule "$URL_PROXY" "Apple.yaml" "深巷有喵的「Apple」规则"
 
-          URL_PROXY="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Google/Google_No_Resolve.yaml"
+          URL_PROXY="https://magicrule.pages.dev/data/_shared/artifacts/Google_classical_fe2edb12daf1b32f.yaml"
           process_rule "$URL_PROXY" "Google.yaml" "深巷有喵的「Google」规则"
 
-          URL_PROXY="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Instagram/Instagram_No_Resolve.yaml"
+          URL_PROXY="https://magicrule.pages.dev/data/_shared/artifacts/Instagram_classical_8f2bea3580d2acf2.yaml"
           process_rule "$URL_PROXY" "Instagram.yaml" "深巷有喵的「Instagram」规则"
 
-          URL_PROXY="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Facebook/Facebook_No_Resolve.yaml"
+          URL_PROXY="https://magicrule.pages.dev/data/_shared/artifacts/Facebook_classical_041e2b1a05aace8f.yaml"
           process_rule "$URL_PROXY" "Facebook.yaml" "深巷有喵的「Facebook」规则"
 
-          URL_PROXY="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Microsoft/Microsoft_No_Resolve.yaml"
+          URL_PROXY="https://magicrule.pages.dev/data/_shared/artifacts/Microsoft_classical_e67099aa280f921f.yaml"
           process_rule "$URL_PROXY" "Microsoft.yaml" "深巷有喵的「Microsoft」规则"
 
-          URL_PROXY="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/YouTube/YouTube_No_Resolve.yaml"
+          URL_PROXY="https://magicrule.pages.dev/data/_shared/artifacts/YouTube_classical_59b6d0fe3b15c19e.yaml"
           process_rule "$URL_PROXY" "YouTube.yaml" "深巷有喵的「YouTube」规则"
 
-          URL_PROXY="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Netflix/Netflix_Classical_No_Resolve.yaml"
+          URL_PROXY="https://magicrule.pages.dev/data/_shared/artifacts/Netflix_classical_c2f68b0a92395ef4.yaml"
           process_rule "$URL_PROXY" "Netflix.yaml" "深巷有喵的「Netflix」规则"
 
           URL_PROXY="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Disney/Disney_No_Resolve.yaml"
           process_rule "$URL_PROXY" "Disney.yaml" "深巷有喵的「Disney」规则"
 
-          URL_PROXY="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Spotify/Spotify_No_Resolve.yaml"
+          URL_PROXY="https://magicrule.pages.dev/data/_shared/artifacts/Spotify_classical_822ce41d873a2ee4.yaml"
           process_rule "$URL_PROXY" "Spotify.yaml" "深巷有喵的「Spotify」规则"
 
-          URL_PROXY="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/TikTok/TikTok_No_Resolve.yaml"
+          URL_PROXY="https://magicrule.pages.dev/data/_shared/artifacts/TikTok_classical_c510421d706b99d3.yaml"
           process_rule "$URL_PROXY" "TikTok.yaml" "深巷有喵的「TikTok」规则"
 
-          URL_PROXY="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/BiliBili/BiliBili_No_Resolve.yaml"
+          URL_PROXY="https://magicrule.pages.dev/data/_shared/artifacts/BiliBili_classical_e094628621c39bfc.yaml"
           process_rule "$URL_PROXY" "BiliBili.yaml" "深巷有喵的「BiliBili」规则" 
 
-          URL_PROXY="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMedia/ChinaMedia_No_Resolve.yaml"
+          URL_PROXY="https://magicrule.pages.dev/data/_shared/artifacts/ChinaMedia_classical_5eda3320a55c6422.yaml"
           process_rule "$URL_PROXY" "ChinaMedia.yaml" "深巷有喵的「ChinaMedia」规则" 
           
-          URL_PROXY="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GlobalMedia/GlobalMedia_Classical_No_Resolve.yaml"
+          URL_PROXY="https://magicrule.pages.dev/data/_shared/artifacts/GlobalMedia_classical_f0880cec2c24ebd6.yaml"
           process_rule "$URL_PROXY" "GlobalMedia.yaml" "深巷有喵的「GlobalMedia」规则" 
 
-          URL_PROXY="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/PayPal/PayPal_No_Resolve.yaml"
+          URL_PROXY="https://magicrule.pages.dev/data/_shared/artifacts/PayPal_classical_3d035a8c84b7c305.yaml"
           process_rule "$URL_PROXY" "PayPal.yaml" "深巷有喵的「PayPal」规则"
 
-          URL_PROXY="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Instagram/Instagram_No_Resolve.yaml"
-          process_rule "$URL_PROXY" "Instagram.yaml" "深巷有喵的「Instagram」规则"
-
-          URL_PROXY="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Whatsapp/Whatsapp_No_Resolve.yaml"
+          URL_PROXY="https://magicrule.pages.dev/data/_shared/artifacts/Whatsapp_classical_cd2dafda3f58a9b4.yaml"
           process_rule "$URL_PROXY" "Whatsapp.yaml" "深巷有喵的「Whatsapp」规则"
 
-          URL_PROXY="https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Lan/Lan.yaml"
+          URL_PROXY="https://magicrule.pages.dev/data/_shared/artifacts/Lan_classical_c34e1546d84707e3.yaml"
           process_rule "$URL_PROXY" "LAN.yaml" "深巷有喵的「LAN」规则"
+
+          
+          URL_PROXY="https://magicrule.pages.dev/data/_shared/artifacts/GlobalGame_classical_f8d067b0c35d9641.yaml"
+          process_rule "$URL_PROXY" "Game.yaml" "深巷有喵的「Game」规则"
 
           # --- 第二部分：Proxy.yaml 聚合处理 ---
           PROXY_TARGET="Rules/Proxy.yaml"
@@ -182,12 +183,10 @@ jobs:
             echo "# ======= 手动维护规则 ========" >> "$proxy_temp"
             awk 'tolower($0) !~ /payload:/ && $0 !~ /^[[:space:]]*#/ && NF' "$PROXY_MANUAL" | sed -E "s/^[[:space:]]*-?[[:space:]]*['\"]?//g; s/['\"]?[[:space:]]*$//g" >> "$proxy_temp"
             echo "" >> "$proxy_temp"
-            echo "" >> "$proxy_temp"
           fi
           
           # B. Proxy 聚合源
           PROXY_SUBS=(
-            "GitHub|https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GitHub/GitHub_No_Resolve.yaml"
             "Telegram|https://ruleset.skk.moe/Clash/non_ip/telegram.txt"
             "Proxy|https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Proxy/Proxy_Classical_No_Resolve.yaml"
           )
@@ -207,7 +206,6 @@ jobs:
               echo "Warning: Failed to download $url"
             fi
             rm -f "$temp_sub"
-            echo "" >> "$proxy_temp"
           done
           
           # C. 合并去重
@@ -236,72 +234,6 @@ jobs:
             fi
           done < "$proxy_temp"
           rm -f "$proxy_temp"
-
-          # --- 第三部分：Game.yaml 聚合处理 ---
-          GAME_TARGET="Rules/Game.yaml"
-          GAME_EXCLUDE="Rules/Manual/Game.exclude.txt"
-          GAME_MANUAL="Rules/Manual/Game.txt"
-          game_temp=$(mktemp)
-          
-          # A. Game 手动规则
-          if [ -f "$GAME_MANUAL" ] && [ -s "$GAME_MANUAL" ]; then
-            echo "# ======= 手动维护规则 ========" >> "$game_temp"
-            awk 'tolower($0) !~ /payload:/ && $0 !~ /^[[:space:]]*#/ && NF' "$GAME_MANUAL" | sed -E "s/^[[:space:]]*-?[[:space:]]*['\"]?//g; s/['\"]?[[:space:]]*$//g" >> "$game_temp"
-            echo "" >> "$game_temp"
-          fi
-          
-          # B. Game 聚合源
-          GAME_SUBS=(
-            "Epic|https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/Epic/Epic_No_Resolve.yaml"
-            "Sony|https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/Sony/Sony_No_Resolve.yaml"
-            "Steam|https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/Steam/Steam_No_Resolve.yaml"
-            "Nintendo|https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Clash/Nintendo/Nintendo_No_Resolve.yaml"
-          )
-          
-          for sub in "${GAME_SUBS[@]}"; do
-            name="${sub%%|*}"
-            url="${sub#*|}"
-            echo "# ======= $name ========" >> "$game_temp"
-            temp_sub=$(mktemp)
-            if curl -fsL "$url" | awk 'tolower($0) !~ /payload:/ && $0 !~ /^[[:space:]]*#/ && NF' | sed -E "s/^[[:space:]]*-?[[:space:]]*['\"]?//g; s/['\"]?[[:space:]]*$//g" > "$temp_sub"; then
-              if [ -f "$GAME_EXCLUDE" ] && [ -s "$GAME_EXCLUDE" ]; then
-                grep -vFf "$GAME_EXCLUDE" "$temp_sub" >> "$game_temp" || true
-              else
-                cat "$temp_sub" >> "$game_temp"
-              fi
-            else
-              echo "Warning: Failed to download $url"
-            fi
-            rm -f "$temp_sub"
-            echo "" >> "$game_temp"
-          done
-          
-          # C. 合并去重
-          sed -i 's/\r//g' "$game_temp"
-          awk '/^#|^[[:space:]]*$/ {print; next} !seen[$0]++' "$game_temp" > "${game_temp}.tmp" && mv "${game_temp}.tmp" "$game_temp"
-          
-          # D. 统计 Game 规则数
-          game_count=$(awk '$0 !~ /^[[:space:]]*#/ && NF' "$game_temp" | wc -l)
-          
-          # E. 写入 Game.yaml 最终文件
-          echo "# NAME: 深巷有喵的「Game」规则" > "$GAME_TARGET"
-          echo "# AUTHOR: Rabbit-Spec" >> "$GAME_TARGET"
-          echo "# REPO: https://github.com/Rabbit-Spec/Clash" >> "$GAME_TARGET"
-          echo "# UPDATED: $UPDATE_TIME" >> "$GAME_TARGET"
-          echo "# TOTAL: $game_count" >> "$GAME_TARGET"
-          echo "" >> "$GAME_TARGET"
-          echo "payload:" >> "$GAME_TARGET"
-          
-          while IFS= read -r line || [ -n "$line" ]; do
-            if [[ "$line" =~ ^# ]]; then
-              echo "  $line" >> "$GAME_TARGET"
-            elif [ -z "$line" ]; then
-              echo "" >> "$GAME_TARGET"
-            else
-              echo "  - $line" >> "$GAME_TARGET"
-            fi
-          done < "$game_temp"
-          rm -f "$game_temp"
 
       # 步骤 3：Git 提交与推送到远程仓库
       - name: Commit and Push Changes
