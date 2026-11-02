@@ -90,7 +90,7 @@ jobs:
             # D. 统计有效规则条数 (排除注释和空白)
             local rule_count=$(awk '$0 !~ /^[[:space:]]*#/ && NF' "$temp_body" | wc -l)
             
-            # E & F. 构造最终 YAML 文件 (Header + payload + awk 毫秒级流式缩进)
+            # E. 构造最终 YAML 文件 (Header + payload + awk 毫秒级流式缩进)
             {
               echo "# NAME: $display_name"
               echo "# AUTHOR: Rabbit-Spec"
@@ -109,20 +109,6 @@ jobs:
                 }
               }' "$temp_body"
             } > "$target_path"
-            
-            rm -f "$temp_body" "$temp_upstream"
-          }
-            
-            # F. 统一按 YAML 格式化写入 (已移出单引号，注释和空行均自动缩进)
-            while IFS= read -r line || [ -n "$line" ]; do
-              if [[ "$line" =~ ^# ]]; then
-                echo "  $line" >> "$target_path"
-              elif [ -z "$line" ]; then
-                echo "" >> "$target_path"
-              else
-                echo "  - $line" >> "$target_path"
-              fi
-            done < "$temp_body"
             
             rm -f "$temp_body" "$temp_upstream"
           }
