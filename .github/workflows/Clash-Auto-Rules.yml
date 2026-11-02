@@ -1,6 +1,6 @@
 # 深巷有喵的「Clash」上游同步规则
-# 版本：1.4.1
-# 日期：2026.11.01
+# 版本：1.4.2
+# 日期：2026.11.02
 # 作者：https://github.com/Rabbit-Spec/Clash
 
 name: Auto-Clash-Rules
@@ -50,23 +50,33 @@ jobs:
             local manual_file="Rules/Manual/${filename_no_ext}.txt"
             local exclude_file="Rules/Manual/${filename_no_ext}.exclude.txt"
             
-            # 创建临时文件存储规则正文
             temp_body=$(mktemp)
             temp_upstream=$(mktemp)
             
-            # A. 提取并规范化手动追加规则
-            if [ -f "$manual_file" ] && [ -s "$manual_file" ]; then
-              echo "# ======= 手动维护规则 ========" >> "$temp_body"
-              awk 'tolower($0) !~ /payload:/ && $0 !~ /^[[:space:]]*#/ && NF' "$manual_file" | sed -E "s/^[[:space:]]*-?[[:space:]]*['\"]?//g; s/['\"]?[[:space:]]*$//g" >> "$temp_body"
-              echo "" >> "$temp_body"
+            # A. 提取并规范化手动追加规则 (去除回车、空行、payload声明及注释)
+            if [ -f "$manual_file" ]; then
+              local clean_manual
+              clean_manual=$(sed 's/\r//g' "$manual_file" | awk 'tolower($0) !~ /^[[:space:]]*payload:/ && $0 !~ /^[[:space:]]*#/ && NF' | sed -E "s/^[[:space:]]*-?[[:space:]]*['\"]?//g; s/['\"]?[[:space:]]*$//g")
+              
+              # 仅在存在有效内容时写入，严格不添加尾部空行
+              if [ -n "$clean_manual" ]; then
+                echo "# ======= 手动维护规则 ========" >> "$temp_body"
+                echo "$clean_manual" >> "$temp_body"
+              fi
             fi
             
             # B. 下载并清洗上游规则
             echo "# ======= 上游同步规则 ========" >> "$temp_body"
-            if curl -fsL "$source_url" | awk 'tolower($0) !~ /payload:/ && $0 !~ /^[[:space:]]*#/ && NF' | sed -E "s/^[[:space:]]*-?[[:space:]]*['\"]?//g; s/['\"]?[[:space:]]*$//g" > "$temp_upstream"; then
-              # 如果存在排除文件，安全过滤
+            if curl -fsL "$source_url" | sed 's/\r//g' | awk 'tolower($0) !~ /^[[:space:]]*payload:/ && $0 !~ /^[[:space:]]*#/ && NF' | sed -E "s/^[[:space:]]*-?[[:space:]]*['\"]?//g; s/['\"]?[[:space:]]*$//g" > "$temp_upstream"; then
+              # 如果存在排除文件，必须预先剔除其内部的空行与回车，防止 grep 误清空全部规则
               if [ -f "$exclude_file" ] && [ -s "$exclude_file" ]; then
-                grep -vFf "$exclude_file" "$temp_upstream" >> "$temp_body" || true
+                local valid_excludes
+                valid_excludes=$(sed 's/\r//g' "$exclude_file" | grep -v '^[[:space:]]*$' || true)
+                if [ -n "$valid_excludes" ]; then
+                  grep -vFf <(echo "$valid_excludes") "$temp_upstream" >> "$temp_body" || true
+                else
+                  cat "$temp_upstream" >> "$temp_body"
+                fi
               else
                 cat "$temp_upstream" >> "$temp_body"
               fi
@@ -74,21 +84,34 @@ jobs:
               echo "Warning: Failed to download $source_url"
             fi
             
-            # C. 合并去重
-            sed -i 's/\r//g' "$temp_body"
+            # C. 合并去重 (保留注释顺序，去除正文完全重复的行)
             awk '/^#|^[[:space:]]*$/ {print; next} !seen[$0]++' "$temp_body" > "${temp_body}.tmp" && mv "${temp_body}.tmp" "$temp_body"
             
-            # D. 统计非注释且非空行的行数
+            # D. 统计有效规则条数 (排除注释和空白)
             local rule_count=$(awk '$0 !~ /^[[:space:]]*#/ && NF' "$temp_body" | wc -l)
             
-            # E. 构造最终文件：Header + payload: 声明
-            echo "# NAME: $display_name" > "$target_path"
-            echo "# AUTHOR: Rabbit-Spec" >> "$target_path"
-            echo "# REPO: https://github.com/Rabbit-Spec/Clash" >> "$target_path"
-            echo "# UPDATED: $UPDATE_TIME" >> "$target_path"
-            echo "# TOTAL: $rule_count" >> "$target_path"
-            echo "" >> "$target_path"
-            echo "payload:" >> "$target_path"
+            # E & F. 构造最终 YAML 文件 (Header + payload + awk 毫秒级流式缩进)
+            {
+              echo "# NAME: $display_name"
+              echo "# AUTHOR: Rabbit-Spec"
+              echo "# REPO: https://github.com/Rabbit-Spec/Clash"
+              echo "# UPDATED: $UPDATE_TIME"
+              echo "# TOTAL: $rule_count"
+              echo ""
+              echo "payload:"
+              awk '{
+                if ($0 ~ /^#/) {
+                  print "  " $0
+                } else if ($0 ~ /^[[:space:]]*$/) {
+                  print ""
+                } else {
+                  print "  - " $0
+                }
+              }' "$temp_body"
+            } > "$target_path"
+            
+            rm -f "$temp_body" "$temp_upstream"
+          }
             
             # F. 统一按 YAML 格式化写入 (已移出单引号，注释和空行均自动缩进)
             while IFS= read -r line || [ -n "$line" ]; do
@@ -167,7 +190,6 @@ jobs:
 
           URL_PROXY="https://magicrule.pages.dev/data/_shared/artifacts/Lan_classical_c34e1546d84707e3.yaml"
           process_rule "$URL_PROXY" "LAN.yaml" "深巷有喵的「LAN」规则"
-
           
           URL_PROXY="https://magicrule.pages.dev/data/_shared/artifacts/GlobalGame_classical_f8d067b0c35d9641.yaml"
           process_rule "$URL_PROXY" "Game.yaml" "深巷有喵的「Game」规则"
