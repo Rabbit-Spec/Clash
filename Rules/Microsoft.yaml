@@ -1,8 +1,8 @@
 # NAME: 深巷有喵的「Microsoft」规则
 # AUTHOR: Rabbit-Spec
 # REPO: https://github.com/Rabbit-Spec/Clash
-# UPDATED: 2026.11.04 09:44:59
-# TOTAL: 909
+# UPDATED: 2026.11.05 09:52:50
+# TOTAL: 911
 
 payload:
   # ======= 上游同步规则 ========
@@ -280,6 +280,7 @@ payload:
   - DOMAIN-SUFFIX,bingpk.com
   - DOMAIN-SUFFIX,bings.com
   - DOMAIN-SUFFIX,bingsandbox.com
+  - DOMAIN-SUFFIX,bingstatic.com
   - DOMAIN-SUFFIX,bingtoolbar.com
   - DOMAIN-SUFFIX,bingtranslator.com
   - DOMAIN-SUFFIX,bingvisualsearch.com
@@ -641,6 +642,7 @@ payload:
   - DOMAIN-SUFFIX,msftidentity.com
   - DOMAIN-SUFFIX,msftncsi.com
   - DOMAIN-SUFFIX,msftnet.org
+  - DOMAIN-SUFFIX,msftstatic.com
   - DOMAIN-SUFFIX,msgamesresearch.com
   - DOMAIN-SUFFIX,msgamestudios.com
   - DOMAIN-SUFFIX,mshome.net
