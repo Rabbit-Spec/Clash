@@ -1,13 +1,12 @@
 # NAME: 深巷有喵的「GlobalMedia」规则
 # AUTHOR: Rabbit-Spec
 # REPO: https://github.com/Rabbit-Spec/Clash
-# UPDATED: 2026.11.06 09:53:35
-# TOTAL: 1708
+# UPDATED: 2026.11.07 09:25:15
+# TOTAL: 1707
 
 payload:
   # ======= 上游同步规则 ========
   - DOMAIN,44wilhpljf.execute-api.ap-southeast-1.amazonaws.com
-  - DOMAIN,7h15.ru1353t.1s.m4d3.by.5ukk4w.skk.moe
   - DOMAIN,ai.google.dev
   - DOMAIN,aistudio.google.com
   - DOMAIN,aod-dash-uk-live.akamaized.net

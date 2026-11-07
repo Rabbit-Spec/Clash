@@ -1,8 +1,8 @@
 # NAME: 深巷有喵的「China」规则
 # AUTHOR: Rabbit-Spec
 # REPO: https://github.com/Rabbit-Spec/Clash
-# UPDATED: 2026.11.06 09:53:35
-# TOTAL: 110201
+# UPDATED: 2026.11.07 09:25:15
+# TOTAL: 110200
 
 payload:
   # ======= 手动维护规则 ========
@@ -433,6 +433,7 @@ payload:
   - publicassets.cdn-apple.com
   - qiao-cn.com
   - qpx.googleflights.net
+  - radio.itunes.apple.com
   - recaptcha-cn.net
   - recaptcha.net
   - redirector.bdn.dev
@@ -17436,6 +17437,7 @@ payload:
   - +.bsdongxin.com
   - +.bsdt1688.com
   - +.bsehk.com
+  - +.bseinfo.net
   - +.bseqp.com
   - +.bserc.com
   - +.bsgcnc.com
@@ -22341,7 +22343,6 @@ payload:
   - +.chuxinvip.com
   - +.chuxueyun.com
   - +.chuyaer.com
-  - +.chuyu.me
   - +.chuzhaobiao.com
   - +.chvacuum.com
   - +.chvoice.com
@@ -36032,14 +36033,12 @@ payload:
   - +.gamehaopu.com
   - +.gamehome.tv
   - +.gameinns.com
-  - +.gameitop.com
   - +.gamejym.com
   - +.gamekee.com
   - +.gamekezhan.com
   - +.gamekuaishou.com
   - +.gamelet.games
   - +.gameley.com
-  - +.gameloop.com
   - +.gameloop.fun
   - +.gamemale.com
   - +.gamemcu.com
@@ -50275,7 +50274,6 @@ payload:
   - +.in-tencentclb.com
   - +.in-tencentclb.net
   - +.in-tencentclb.work
-  - +.in.th
   - +.in001.com
   - +.in66.com
   - +.in800.com
@@ -62097,6 +62095,7 @@ payload:
   - +.luyinla.com
   - +.luyinzhushou.com
   - +.luyitong.com
+  - +.luyong.com
   - +.luyor.net
   - +.luyouqi.com
   - +.luyouwang.com
@@ -62895,9 +62894,6 @@ payload:
   - +.magpiepharma.com
   - +.magtechjournal.com
   - +.magvision.com
-  - +.mahjongai.net
-  - +.mahjongcup.com
-  - +.mahjongcup.net
   - +.mahoupao.com
   - +.mahua.com
   - +.mai.com
@@ -72341,7 +72337,6 @@ payload:
   - +.proup.club
   - +.providence-chemicals.com
   - +.prowine-shanghai.com
-  - +.proximabeta.com
   - +.proya-group.com
   - +.proya.com
   - +.proyy.com
@@ -78750,6 +78745,7 @@ payload:
   - +.senra.me
   - +.sense-hk.com
   - +.senseagro.com
+  - +.senseavatar.com
   - +.senselock.com
   - +.senseluxury.com
   - +.senser.group
@@ -81002,6 +80998,7 @@ payload:
   - +.shutu.cc
   - +.shutwin.com
   - +.shuwangxing.com
+  - +.shuwen.com
   - +.shuwenxianyun.com
   - +.shuwulou.com
   - +.shuxiangmuye.com
@@ -87058,8 +87055,6 @@ payload:
   - +.tetuijiudian.com
   - +.tevachem.com
   - +.tex68.com
-  - +.texasholdemcup.com
-  - +.texasholdemcup.net
   - +.texpage.com
   - +.texpageusercontent.com
   - +.texpro-group.com
@@ -87665,6 +87660,7 @@ payload:
   - +.tidemedia.com
   - +.tidepharm.com
   - +.tidesec.com
+  - +.tidesight.com
   - +.tideswing.fun
   - +.tidi.mobi
   - +.tiduyun.com
@@ -90720,6 +90716,7 @@ payload:
   - +.upsapp.com
   - +.upseller.com
   - +.upskyshanghai.com
+  - +.upsort.com
   - +.upst86.com
   - +.uptom.com
   - +.uptougu.com
@@ -104525,6 +104522,7 @@ payload:
   - +.yundonghao.com
   - +.yundongit.com
   - +.yundousoft.com
+  - +.yundouxueyuan.com
   - +.yundui.cc
   - +.yunduimedia.com
   - +.yundun.com
@@ -105174,6 +105172,7 @@ payload:
   - +.yy960.com
   - +.yyaotec.com
   - +.yyarea.com
+  - +.yybip.com
   - +.yyblly.com
   - +.yybnet.net
   - +.yybox.cc
