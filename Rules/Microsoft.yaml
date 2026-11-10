@@ -1,8 +1,8 @@
 # NAME: 深巷有喵的「Microsoft」规则
 # AUTHOR: Rabbit-Spec
 # REPO: https://github.com/Rabbit-Spec/Clash
-# UPDATED: 2026.11.09 09:17:15
-# TOTAL: 917
+# UPDATED: 2026.11.10 11:52:34
+# TOTAL: 918
 
 payload:
   # ======= 上游同步规则 ========
@@ -78,6 +78,7 @@ payload:
   - DOMAIN,packages.microsoft.com
   - DOMAIN,poshtestgallery.cloudapp.net
   - DOMAIN,prodforza.blob.core.windows.net
+  - DOMAIN,production-copilot-host-westus.webpubsub.azure.com
   - DOMAIN,productionresultssa0.blob.core.windows.net
   - DOMAIN,productionresultssa1.blob.core.windows.net
   - DOMAIN,productionresultssa10.blob.core.windows.net
