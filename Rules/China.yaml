@@ -1,8 +1,8 @@
 # NAME: 深巷有喵的「China」规则
 # AUTHOR: Rabbit-Spec
 # REPO: https://github.com/Rabbit-Spec/Clash
-# UPDATED: 2026.11.10 11:52:34
-# TOTAL: 110200
+# UPDATED: 2026.11.11 09:35:10
+# TOTAL: 110201
 
 payload:
   # ======= 手动维护规则 ========
@@ -67672,6 +67672,7 @@ payload:
   - +.nhzs.com
   - +.ni8.com
   - +.ni93.com
+  - +.nia-teams.com
   - +.nianchu.net
   - +.nianhuawan.com
   - +.niankawang.com
