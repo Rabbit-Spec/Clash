@@ -1,8 +1,8 @@
 # NAME: 深巷有喵的「Proxy」规则
 # AUTHOR: Rabbit-Spec
 # REPO: https://github.com/Rabbit-Spec/Clash
-# UPDATED: 2026.11.12 10:35:17
-# TOTAL: 24498
+# UPDATED: 2026.11.13 10:15:11
+# TOTAL: 24499
 
 payload:
   # ======= 手动维护规则 ========
@@ -1147,6 +1147,7 @@ payload:
   - DOMAIN,instafeed.nfcube.com
   - DOMAIN,int.mwbbiz.com
   - DOMAIN,interwiki.scpwikicn.com
+  - DOMAIN,iprsoftwaremedia.com
   - DOMAIN,ipxy.io
   - DOMAIN,irp-cdn.multiscreensite.com
   - DOMAIN,isitmaintained.com
