@@ -1,8 +1,8 @@
 # NAME: 深巷有喵的「Proxy」规则
 # AUTHOR: Rabbit-Spec
 # REPO: https://github.com/Rabbit-Spec/Clash
-# UPDATED: 2026.11.13 10:15:11
-# TOTAL: 24499
+# UPDATED: 2026.11.14 09:53:34
+# TOTAL: 24501
 
 payload:
   # ======= 手动维护规则 ========
@@ -1417,6 +1417,7 @@ payload:
   - DOMAIN,public.hare200.com
   - DOMAIN,public.komiic.com
   - DOMAIN,public.mocortech.com
+  - DOMAIN,public.popclip.app
   - DOMAIN,public.zoorix.com
   - DOMAIN,q676790b.pmhcjk.com
   - DOMAIN,qualcomm.sc.omtrdc.net
@@ -2313,6 +2314,7 @@ payload:
   - DOMAIN-SUFFIX,51luoben.com
   - DOMAIN-SUFFIX,51luoli.info
   - DOMAIN-SUFFIX,51mh.app
+  - DOMAIN-SUFFIX,51papaya.com
   - DOMAIN-SUFFIX,51pincha.cc
   - DOMAIN-SUFFIX,51tuqiang.com
   - DOMAIN-SUFFIX,520aa.tv
