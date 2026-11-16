@@ -1,6 +1,6 @@
 # 深巷有喵的「Clash」上游同步规则
 # 版本：1.4.2
-# 日期：2026.11.02
+# 日期：2026.11.16
 # 作者：https://github.com/Rabbit-Spec/Clash
 
 name: Auto-Clash-Rules
@@ -174,7 +174,7 @@ jobs:
           URL_PROXY="https://magicrule.pages.dev/data/_shared/artifacts/Whatsapp_classical_cd2dafda3f58a9b4.yaml"
           process_rule "$URL_PROXY" "Whatsapp.yaml" "深巷有喵的「Whatsapp」规则"
 
-          URL_PROXY="https://magicrule.pages.dev/data/_shared/artifacts/Lan_classical_c34e1546d84707e3.yaml"
+          URL_PROXY="https://magicrule.pages.dev/data/_shared/artifacts/Lan_classical_24817c9e646b9514.yaml"
           process_rule "$URL_PROXY" "LAN.yaml" "深巷有喵的「LAN」规则"
           
           URL_PROXY="https://magicrule.pages.dev/data/_shared/artifacts/GlobalGame_classical_f8d067b0c35d9641.yaml"
