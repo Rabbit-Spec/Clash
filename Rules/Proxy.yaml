@@ -1,8 +1,8 @@
 # NAME: 深巷有喵的「Proxy」规则
 # AUTHOR: Rabbit-Spec
 # REPO: https://github.com/Rabbit-Spec/Clash
-# UPDATED: 2026.11.17 12:14:08
-# TOTAL: 24501
+# UPDATED: 2026.11.18 11:13:34
+# TOTAL: 24506
 
 payload:
   # ======= 手动维护规则 ========
@@ -268,6 +268,7 @@ payload:
   - DOMAIN,brandwidgets.outtra.com
   - DOMAIN,bucket.noy.asia
   - DOMAIN,bucket1.notaku.so
+  - DOMAIN,builds.dotnet.microsoft.com
   - DOMAIN,bundle.5gtb.com
   - DOMAIN,bundle.9gtb.com
   - DOMAIN,bundle.dyn-rev.app
@@ -1235,6 +1236,7 @@ payload:
   - DOMAIN,media.convertkit.com
   - DOMAIN,media.currys.biz
   - DOMAIN,media.daily.dev
+  - DOMAIN,media.datacamp.com
   - DOMAIN,media.datacenterdynamics.com
   - DOMAIN,media.e4le.me
   - DOMAIN,media.fidoalliance.org
@@ -1675,6 +1677,7 @@ payload:
   - DOMAIN,static.javhd.com
   - DOMAIN,static.jup.ag
   - DOMAIN,static.k2s.cc
+  - DOMAIN,static.karousell.com
   - DOMAIN,static.klaviyo.com
   - DOMAIN,static.licdn.com
   - DOMAIN,static.lwn.net
@@ -7217,6 +7220,7 @@ payload:
   - DOMAIN-SUFFIX,cybermondaybeats4sale.com
   - DOMAIN-SUFFIX,cyberpunk.net
   - DOMAIN-SUFFIX,cyberx.com
+  - DOMAIN-SUFFIX,cygames.com
   - DOMAIN-SUFFIX,cygwin.com
   - DOMAIN-SUFFIX,cylink.pro
   - DOMAIN-SUFFIX,cylink0122.icu
@@ -18448,6 +18452,7 @@ payload:
   - DOMAIN-SUFFIX,religionnews.com
   - DOMAIN-SUFFIX,religioustolerance.org
   - DOMAIN-SUFFIX,remirepo.net
+  - DOMAIN-SUFFIX,remna.dev
   - DOMAIN-SUFFIX,renchead.com
   - DOMAIN-SUFFIX,render.com
   - DOMAIN-SUFFIX,renderingtoolkit.org
