@@ -1,8 +1,8 @@
 # NAME: 深巷有喵的「AIGC」规则
 # AUTHOR: Rabbit-Spec
 # REPO: https://github.com/Rabbit-Spec/Clash
-# UPDATED: 2026.11.19 12:05:15
-# TOTAL: 59
+# UPDATED: 2026.11.20 10:44:03
+# TOTAL: 61
 
 payload:
   # ======= 手动维护规则 ========
@@ -26,6 +26,7 @@ payload:
   - DOMAIN-SUFFIX,claude.com
   - DOMAIN-SUFFIX,openart.ai
   - DOMAIN-SUFFIX,chatgpt.com
+  - DOMAIN,claude.site
   - DOMAIN-SUFFIX,clipdrop.co
   - DOMAIN-SUFFIX,chatgpt.site
   - DOMAIN-SUFFIX,deepmind.com
@@ -57,6 +58,7 @@ payload:
   - DOMAIN,gateway.ai.cloudflare.com
   - DOMAIN,aisandbox-pa.googleapis.com
   - DOMAIN-SUFFIX,cloudcode-pa.googleapis.com
+  - DOMAIN,bridge.claudeusercontent.com
   - DOMAIN,server.self-serve.windsurf.com
   - DOMAIN,robinfrontend-pa.googleapis.com
   - DOMAIN,alkalicore-pa.clients6.google.com
