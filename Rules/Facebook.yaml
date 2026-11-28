@@ -1,29 +1,8 @@
 # NAME: 深巷有喵的「Facebook」规则
 # AUTHOR: Rabbit-Spec
 # REPO: https://github.com/Rabbit-Spec/Clash
-# UPDATED: 2026.11.27 11:51:42
-# TOTAL: 21
+# UPDATED: 2026.11.28 11:37:44
+# TOTAL: 0
 
 payload:
   # ======= 上游同步规则 ========
-  - <!doctype html>
-  - <html lang="zh-CN">
-  - <head>
-  - <meta charset="UTF-8" />
-  - <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-  - <meta name="robots" content="index, follow" />
-  - <meta name="apple-mobile-web-app-capable" content="yes" />
-  - <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  - <meta name="mobile-web-app-capable" content="yes" />
-  - <meta name="theme-color" content="#fdf6ea" />
-  - <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-  - <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
-  - <meta name="apple-mobile-web-app-title" content="MagicRule" />
-  - <title>MagicRule</title>
-  - <script type="module" crossorigin src="./assets/index-BEz3GdPL.js"></script>
-  - <link rel="stylesheet" crossorigin href="./assets/index-DMKOXNUI.css">
-  - </head>
-  - <body>
-  - <div id="app"></div>
-  - </body>
-  - </html>
